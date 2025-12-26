@@ -1,0 +1,19 @@
+package org.cws.ultimatePaintOff.listeners;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
+import org.cws.ultimatePaintOff.UltimatePaintOff;
+
+public class PlayerAttemptPickupItemListener implements Listener {
+    UltimatePaintOff instance = UltimatePaintOff.getInstance();
+
+    @EventHandler
+    public void onPlayerAttemptPickupItemEvent(PlayerAttemptPickupItemEvent event) {
+        Player player = event.getPlayer();
+        if (instance.queueManager.checkIfInQueue(player)|| instance.gameManager.checkIfInGame(player)) {
+            event.setCancelled(true);
+        }
+    }
+}
