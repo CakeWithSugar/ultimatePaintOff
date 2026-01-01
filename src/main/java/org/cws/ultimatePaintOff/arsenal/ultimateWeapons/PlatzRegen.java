@@ -28,7 +28,7 @@ public class PlatzRegen {
 
     public void launch(Player player) {
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 0.1f, 2.0f);
-        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.DUST,false,0,0,0,0);
+        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.DUST,false,0,0,0,0,false);
     }
 
     public void phaseOne(Snowball snowball, Block hitBlock, Player player) {
@@ -164,7 +164,7 @@ public class PlatzRegen {
                 if (instance.paintManager.shouldExcludeAnyLocation(randomLoc, loc2, excludeCoords)) {
                     continue;
                 }
-                instance.snowballManager.createSnowball(player,randomLoc,0,0.1,nameChild,0,false,1,null,false,0,0,0,0);
+                instance.snowballManager.createSnowball(player,randomLoc,0,0.1,nameChild,0,false,1,null,false,0,0,0,0,false);
             }
         }, 0, 2);
 

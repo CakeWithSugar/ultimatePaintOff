@@ -14,15 +14,20 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class SnowballManager {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final Map<Snowball,String> snowballName = new HashMap<>();
 
-    public void createSnowball(Player player, Location spawnLocation, double speedMultiplier, double gravityLevel, String name, int destructionTime, boolean glowing, int paintLength, Particle trailParticle, boolean ultPoint, int coolDown, int explosionRadius, int damage, float yawOffset) {
+    public void createSnowball(Player player, Location spawnLocation, double speedMultiplier, double gravityLevel, String name, int destructionTime, boolean glowing, int paintLength, Particle trailParticle, boolean ultPoint, int coolDown, int explosionRadius, int damage, float yawOffset, boolean randomizeYaw) {
         String color = instance.paintManager.getColorByPlayer(player);
         Snowball snowball;
 
+        if (randomizeYaw && yawOffset != 0) {
+            Random random = new Random();
+            yawOffset = random.nextFloat(2 * yawOffset + 1) - yawOffset;
+        }
         if (spawnLocation != null) {
             float yaw = spawnLocation.getYaw() + yawOffset;
             float pitch = spawnLocation.getPitch();

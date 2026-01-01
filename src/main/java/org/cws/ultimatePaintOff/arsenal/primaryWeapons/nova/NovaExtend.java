@@ -25,6 +25,7 @@ public class NovaExtend {
     private final int explosionRadius = 1;
     private final boolean glowing = false;
     private final float yawOffset = 0;
+    private final boolean randomizeYaw = false;
 
     public ItemStack item() {
         return instance.itemManager.createWeapon(material, name, classification, ultPoints, ultimateName, speedMultiplier, gravityLevel, damage, paintLength, cost, coolDown, destructionTime, explosionRadius, explosionDamage,yawOffset,null);
@@ -40,6 +41,6 @@ public class NovaExtend {
 
     public void shoot(Player player) {
         instance.pointsManager.fuel.put(player, instance.pointsManager.fuel.get(player) - cost);
-        instance.snowballManager.createSnowball(player, null, speedMultiplier, gravityLevel, name, destructionTime, glowing, paintLength, null, true, coolDown, explosionRadius, explosionDamage,yawOffset);
+        instance.snowballManager.createSnowball(player, null, speedMultiplier, gravityLevel, name, destructionTime, glowing, paintLength, null, true, coolDown, explosionRadius, explosionDamage,yawOffset,randomizeYaw);
     }
 }
