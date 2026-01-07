@@ -1,4 +1,4 @@
-org\cws\ultimatePaintOff\arsenal\primaryWeapons\pistol\Pistol.class
+org\cws\ultimatePaintOff\arsenal\primaryWeapons\snap\SnapComplex.class
 org\cws\ultimatePaintOff\managers\SnowballManager.class
 org\cws\ultimatePaintOff\listeners\PlayerQuitListener.class
 org\cws\ultimatePaintOff\executors\LeaveExecutor.class
@@ -6,6 +6,7 @@ org\cws\ultimatePaintOff\managers\PointsManager.class
 org\cws\ultimatePaintOff\managers\InventoryManager.class
 org\cws\ultimatePaintOff\arsenal\primaryWeapons\nova\NovaPuls.class
 org\cws\ultimatePaintOff\managers\PaintManager.class
+org\cws\ultimatePaintOff\arsenal\primaryWeapons\akonda\Akonda.class
 org\cws\ultimatePaintOff\managers\ArsenalCoordinatingManager.class
 org\cws\ultimatePaintOff\UltimatePaintOff.class
 org\cws\ultimatePaintOff\listeners\BlockPlaceListener.class
@@ -14,16 +15,18 @@ org\cws\ultimatePaintOff\managers\QueueManager.class
 org\cws\ultimatePaintOff\managers\ItemManager.class
 org\cws\ultimatePaintOff\executors\InfoExecutor.class
 org\cws\ultimatePaintOff\listsAndInventories\ArsenalInventory.class
+org\cws\ultimatePaintOff\arsenal\ultimateWeapons\KrawumKreisel.class
 org\cws\ultimatePaintOff\BasicValues.class
 org\cws\ultimatePaintOff\arsenal\primaryWeapons\triatler\TriAtlerExtend.class
 org\cws\ultimatePaintOff\listeners\PlayerAttemptPickupItemListener.class
 org\cws\ultimatePaintOff\executors\QueueExecutor.class
 org\cws\ultimatePaintOff\executors\StopExecutor.class
+org\cws\ultimatePaintOff\arsenal\primaryWeapons\snap\SnapLight.class
 org\cws\ultimatePaintOff\managers\DamageManager.class
 org\cws\ultimatePaintOff\listeners\EntityDamageListener.class
 org\cws\ultimatePaintOff\arsenal\primaryWeapons\nova\Nova.class
-org\cws\ultimatePaintOff\arsenal\primaryWeapons\pistol\PistolLight.class
 org\cws\ultimatePaintOff\managers\StopManager.class
+org\cws\ultimatePaintOff\arsenal\primaryWeapons\snap\Snap.class
 org\cws\ultimatePaintOff\managers\MessageManager.class
 org\cws\ultimatePaintOff\listeners\PlayerMoveListener.class
 org\cws\ultimatePaintOff\arsenal\primaryWeapons\triatler\TriAtler.class

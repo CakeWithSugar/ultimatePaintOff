@@ -28,10 +28,16 @@ public class ProjectileHitListener implements Listener {
                     if (name.equals(instance.platzRegen.name)) {
                         instance.platzRegen.phaseOne(snowball, target.getLocation().add(0, 2, 0).getBlock(), (Player) snowball.getShooter());
                     }
+                    if (instance.paintManager.stripColorCodes(name).equals(instance.paintManager.stripColorCodes(instance.krawumKreisel.name))) {
+                        instance.krawumKreisel.phaseOne(snowball, target.getLocation().add(0, 2, 0).getBlock(),(Player) snowball.getShooter());
+                    }
                 }
                 if (block != null) {
                     if (name.equals(instance.platzRegen.name)) {
                         instance.platzRegen.phaseOne(snowball, block, (Player) snowball.getShooter());
+                    }
+                    if (instance.paintManager.stripColorCodes(name).equals(instance.paintManager.stripColorCodes(instance.krawumKreisel.name))) {
+                        instance.krawumKreisel.phaseOne(snowball, block,(Player) snowball.getShooter());
                     }
                 }
             }

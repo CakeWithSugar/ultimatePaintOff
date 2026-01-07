@@ -26,6 +26,7 @@ public class JettBlaster {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player, player.getLocation());
+            instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
     }

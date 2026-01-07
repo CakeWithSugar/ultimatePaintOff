@@ -14,7 +14,7 @@ public class InventoryManager {
     public void getPrimaryItem(Player player) {
         if (instance.selectionManager.weapon.get(player) == null) {
             instance.messageManager.sendInfo(player, "No weapon chosen, defaulting to pistol!");
-            instance.selectionManager.weapon.put(player, instance.pistol.weaponNumber);
+            instance.selectionManager.weapon.put(player, instance.snap.weaponNumber);
         }
         int weapon = instance.selectionManager.weapon.get(player);
         ItemStack item = instance.arsenalCoordination.getPrimaryItemByWeaponNumber(weapon);

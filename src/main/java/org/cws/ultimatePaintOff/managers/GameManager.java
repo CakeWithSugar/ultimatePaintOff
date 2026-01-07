@@ -57,6 +57,7 @@ public class GameManager {
         setGameRules("Po"+queue);
         assignTeams(queue);
         minuetTimer(queue);
+        instance.messageManager.sendStartMessage(queue);
         instance.stopManager.startEndingTimer(queue, arenaName);
 
         for (Player player : game.get(queue)) {
@@ -65,7 +66,6 @@ public class GameManager {
             instance.pointsManager.fuel.put(player, 150);
             instance.pointsManager.ultPoint.put(player, 0);
 
-            instance.messageManager.sendStartMessage(player);
             instance.messageManager.sendInfo(player, "Arena: §a" + arenaName);
             instance.arenaManager.portToArena(player, instance.gameManager.arenaName[queue]);
         }

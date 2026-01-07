@@ -20,7 +20,7 @@ public class SnowballManager {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final Map<Snowball,String> snowballName = new HashMap<>();
 
-    public void createSnowball(Player player, Location spawnLocation, double speedMultiplier, double gravityLevel, String name, int destructionTime, boolean glowing, int paintLength, Particle trailParticle, boolean ultPoint, int coolDown, int explosionRadius, int damage, float yawOffset, boolean randomizeYaw) {
+    public void createSnowball(Player player, Location spawnLocation, double speedMultiplier, double gravityLevel, String name, int destructionTime, boolean glowing, int paintLength, Particle trailParticle, boolean ultPoint, int coolDown, int explosionRadius, int explosionDamage, float yawOffset, boolean randomizeYaw) {
         String color = instance.paintManager.getColorByPlayer(player);
         Snowball snowball;
 
@@ -28,34 +28,21 @@ public class SnowballManager {
             Random random = new Random();
             yawOffset = random.nextFloat(2 * yawOffset + 1) - yawOffset;
         }
+        float yaw = player.getYaw() + yawOffset;
+        float pitch = player.getPitch();
+
+        double radianYaw = Math.toRadians(yaw);
+        double radianPitch = Math.toRadians(pitch);
+
+        double x = -Math.sin(radianYaw) * Math.cos(radianPitch);
+        double y = -Math.sin(radianPitch);
+        double z = Math.cos(radianYaw) * Math.cos(radianPitch);
+
+        Vector direction = new Vector(x, y, z).normalize().multiply(speedMultiplier);
         if (spawnLocation != null) {
-            float yaw = spawnLocation.getYaw() + yawOffset;
-            float pitch = spawnLocation.getPitch();
-
-            // Create a new direction vector with the rotated yaw
-            double radianYaw = Math.toRadians(yaw);
-            double radianPitch = Math.toRadians(pitch);
-
-            double x = -Math.sin(radianYaw) * Math.cos(radianPitch);
-            double y = -Math.sin(radianPitch);
-            double z = Math.cos(radianYaw) * Math.cos(radianPitch);
-
-            Vector direction = new Vector(x, y, z).normalize().multiply(speedMultiplier);
             snowball = spawnLocation.getWorld().spawn(spawnLocation, Snowball.class);
             snowball.setVelocity(direction);
         } else {
-            float yaw = player.getYaw() + yawOffset;
-            float pitch = player.getPitch();
-
-            // Create a new direction vector with the rotated yaw
-            double radianYaw = Math.toRadians(yaw);
-            double radianPitch = Math.toRadians(pitch);
-
-            double x = -Math.sin(radianYaw) * Math.cos(radianPitch);
-            double y = -Math.sin(radianPitch);
-            double z = Math.cos(radianYaw) * Math.cos(radianPitch);
-
-            Vector direction = new Vector(x, y, z).normalize().multiply(speedMultiplier);
             snowball = player.launchProjectile(Snowball.class);
             snowball.setVelocity(direction);
         }
@@ -78,7 +65,7 @@ public class SnowballManager {
         if (paintLength > 0) {
             instance.paintManager.startPaintSequence(snowball, paintLength,color,ultPoint);
         }
-        setTimer(snowball, destructionTime,explosionRadius,damage,ultPoint);
+        setTimer(snowball, destructionTime,explosionRadius,explosionDamage,ultPoint);
     }
 
     public void applyGravity(Snowball snowball,double gravityLevel) {

@@ -2,6 +2,7 @@ package org.cws.ultimatePaintOff.managers;
 
 import net.kyori.adventure.text.Component;
 
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -11,6 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MessageManager {
@@ -37,12 +39,18 @@ public class MessageManager {
         player.sendMessage("§ePaintOff §f| §7" + message);
     }
 
-    public void sendStartMessage(Player player) {
-        int queue = instance.gameManager.getGameNumber(player);
-        if (instance.gameManager.teamA.get(queue).contains(player)) {
-            player.sendTitle(getColoredColor(player,false),"§7vs " + getColoredColor(player,true));
-        } else if (instance.gameManager.teamB.get(queue).contains(player)) {
-            player.sendTitle(getColoredColor(player,false),"§7vs " + getColoredColor(player,true));
+    public void sendStartMessage(int game) {
+        for (Player player : instance.gameManager.game.get(game)) {
+            Component main = Component.text(getColoredColor(player, false));
+            Component title = Component.text("§7vs" + getColoredColor(player, true));
+            Title message = Title.title(main, title);
+            player.showTitle(message);
+        }
+    }
+
+    public void sendUltMessage(Player player,String ultName) {
+        for (Player p : instance.gameManager.game.get(instance.gameManager.getGameNumber(player))) {
+            p.sendMessage(" §7> " + instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + ultName);
         }
     }
 

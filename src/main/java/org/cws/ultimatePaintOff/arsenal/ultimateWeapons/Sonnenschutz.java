@@ -1,5 +1,6 @@
 package org.cws.ultimatePaintOff.arsenal.ultimateWeapons;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -25,6 +26,7 @@ public class Sonnenschutz {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
     }
@@ -60,6 +62,9 @@ public class Sonnenschutz {
         direction.setX(0);
         direction.setZ(0);
         snowballChild.setVelocity(direction);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        snowballChild.customName(customName);
+        snowballChild.setCustomNameVisible(true);
         snowballChild.setShooter(snowball.getShooter());
         snowballChild.setGlowing(true);
         snowballChild.setGravity(false);
@@ -99,7 +104,7 @@ public class Sonnenschutz {
 
                     if (distanceSquared <= currentRadius * currentRadius) {
                         if (Math.abs(targetLoc.getY() - origin.getY()) <= 2.0) {
-                            target.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20, 0, false, false));
+                            target.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20, 0, true, false));
                         }
                     }
                 }

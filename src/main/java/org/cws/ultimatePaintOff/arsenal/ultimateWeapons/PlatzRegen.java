@@ -1,5 +1,6 @@
 package org.cws.ultimatePaintOff.arsenal.ultimateWeapons;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -22,6 +23,7 @@ public class PlatzRegen {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
     }
@@ -40,6 +42,9 @@ public class PlatzRegen {
         direction.setX(0);
         direction.setZ(0);
         snowballChild.setVelocity(direction);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        snowballChild.customName(customName);
+        snowballChild.setCustomNameVisible(true);
         snowballChild.setShooter(snowball.getShooter());
         snowball.getWorld().spawnParticle(Particle.SONIC_BOOM, loc, 1, 0, 0, 0, 0.005);
         hitBlock.getWorld().playSound(hitBlock.getLocation(), Sound.BLOCK_SLIME_BLOCK_HIT, 1.0f, 2.0f);

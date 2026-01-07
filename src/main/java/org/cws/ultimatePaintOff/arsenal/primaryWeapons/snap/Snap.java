@@ -1,20 +1,20 @@
-package org.cws.ultimatePaintOff.arsenal.primaryWeapons.pistol;
+package org.cws.ultimatePaintOff.arsenal.primaryWeapons.snap;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
-public class Pistol {
+public class Snap {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Snap";
     public final String classification = "Atacking";
     public final String ultimateName = instance.heliTornedo.name;
-    public final Material material = Material.IRON_HOE;
+    public final Material material = Material.WOODEN_HOE;
     public final int weaponNumber = 1;
     public final int cost = 6;
-    public final int ultPoints = 200;
-    public final int damage = 6;
+    public final int ultPoints = 210;
+    public final int damage = 4;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 3.0;

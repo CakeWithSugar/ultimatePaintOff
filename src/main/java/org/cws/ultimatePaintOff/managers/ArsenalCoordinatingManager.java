@@ -18,11 +18,11 @@ public class ArsenalCoordinatingManager {
     }
 
     public void dealDamage(Player player, Player attacker, String objectName) {
-        if (objectName.equals(instance.pistol.name)) {
-            instance.damageManager.damagePlayer(player, attacker, instance.pistol.damage);
+        if (objectName.equals(instance.snap.name)) {
+            instance.damageManager.damagePlayer(player, attacker, instance.snap.damage);
         }
-        if (objectName.equals(instance.pistolLight.name)) {
-            instance.damageManager.damagePlayer(player, attacker, instance.pistolLight.damage);
+        if (objectName.equals(instance.snapLight.name)) {
+            instance.damageManager.damagePlayer(player, attacker, instance.snapLight.damage);
         }
         if (objectName.equals(instance.platzRegen.name)) {
             instance.damageManager.damagePlayer(player, attacker, instance.platzRegen.damage);
@@ -45,15 +45,21 @@ public class ArsenalCoordinatingManager {
         if (objectName.equals(instance.triAtlerPegasus.name)) {
             instance.damageManager.damagePlayer(player, attacker, instance.triAtlerPegasus.damage);
         }
+        if (objectName.equals(instance.snapComplex.name)) {
+            instance.damageManager.damagePlayer(player, attacker, instance.snapComplex.damage);
+        }
+        if (objectName.equals(instance.akonda.name)) {
+            instance.damageManager.damagePlayer(player, attacker, instance.akonda.damage);
+        }
     }
 
     public ItemStack getPrimaryItemByWeaponNumber(int weapon) {
         ItemStack item = null;
-        if (weapon == instance.pistol.weaponNumber) {
-            item = instance.pistol.gameItem();
+        if (weapon == instance.snap.weaponNumber) {
+            item = instance.snap.gameItem();
         }
-        if (weapon == instance.pistolLight.weaponNumber) {
-            item = instance.pistolLight.gameItem();
+        if (weapon == instance.snapLight.weaponNumber) {
+            item = instance.snapLight.gameItem();
         }
         if (weapon == instance.nova.weaponNumber) {
             item = instance.nova.gameItem();
@@ -72,6 +78,12 @@ public class ArsenalCoordinatingManager {
         }
         if (weapon == instance.triAtlerPegasus.weaponNumber) {
             item = instance.triAtlerPegasus.gameItem();
+        }
+        if (weapon == instance.snapComplex.weaponNumber) {
+            item = instance.snapComplex.gameItem();
+        }
+        if (weapon == instance.akonda.weaponNumber) {
+            item = instance.akonda.gameItem();
         }
         return item;
     }
@@ -98,11 +110,11 @@ public class ArsenalCoordinatingManager {
             return;
         }
         //Primary Weapons
-        if (instance.pistol.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.pistol.cost)) {
-            instance.pistol.shoot(player);
+        if (instance.snap.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snap.cost)) {
+            instance.snap.shoot(player);
         }
-        if (instance.pistolLight.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.pistolLight.cost)) {
-            instance.pistolLight.shoot(player);
+        if (instance.snapLight.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snapLight.cost)) {
+            instance.snapLight.shoot(player);
         }
         if (instance.nova.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.nova.cost)) {
             instance.nova.shoot(player);
@@ -121,6 +133,12 @@ public class ArsenalCoordinatingManager {
         }
         if (instance.triAtlerPegasus.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.triAtlerPegasus.cost)) {
             instance.triAtlerPegasus.shoot(player);
+        }
+        if (instance.snapComplex.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snapComplex.cost)) {
+            instance.snapComplex.shoot(player);
+        }
+        if (instance.akonda.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.akonda.cost)) {
+            instance.akonda.shoot(player);
         }
     }
 
@@ -149,11 +167,11 @@ public class ArsenalCoordinatingManager {
             instance.arsenalInventory.setupInfoInventory();
             return;
         }
-        if (instance.itemManager.isItem(item, instance.pistol.material, instance.pistol.name)) {
-            instance.selectionManager.put(instance.pistol.weaponNumber,instance.pistol.name,player);
+        if (instance.itemManager.isItem(item, instance.snap.material, instance.snap.name)) {
+            instance.selectionManager.put(instance.snap.weaponNumber,instance.snap.name,player);
         }
-        if (instance.itemManager.isItem(item, instance.pistolLight.material, instance.pistolLight.name)) {
-            instance.selectionManager.put(instance.pistolLight.weaponNumber,instance.pistolLight.name,player);
+        if (instance.itemManager.isItem(item, instance.snapLight.material, instance.snapLight.name)) {
+            instance.selectionManager.put(instance.snapLight.weaponNumber,instance.snapLight.name,player);
         }
         if (instance.itemManager.isItem(item, instance.nova.material, instance.nova.name)) {
             instance.selectionManager.put(instance.nova.weaponNumber,instance.nova.name,player);
@@ -173,14 +191,20 @@ public class ArsenalCoordinatingManager {
         if (instance.itemManager.isItem(item, instance.triAtlerPegasus.material, instance.triAtlerPegasus.name)) {
             instance.selectionManager.put(instance.triAtlerPegasus.weaponNumber,instance.triAtlerPegasus.name,player);
         }
+        if (instance.itemManager.isItem(item, instance.snapComplex.material, instance.snapComplex.name)) {
+            instance.selectionManager.put(instance.snapComplex.weaponNumber,instance.snapComplex.name,player);
+        }
+        if (instance.itemManager.isItem(item, instance.akonda.material, instance.akonda.name)) {
+            instance.selectionManager.put(instance.akonda.weaponNumber,instance.akonda.name,player);
+        }
     }
 
     public int getUltPointsByWeaponNumber(int weaponNumber) {
-        if (weaponNumber == instance.pistol.weaponNumber) {
-            return instance.pistol.ultPoints;
+        if (weaponNumber == instance.snap.weaponNumber) {
+            return instance.snap.ultPoints;
         }
-        if (weaponNumber == instance.pistolLight.weaponNumber) {
-            return instance.pistolLight.ultPoints;
+        if (weaponNumber == instance.snapLight.weaponNumber) {
+            return instance.snapLight.ultPoints;
         }
         if (weaponNumber == instance.nova.weaponNumber) {
             return instance.nova.ultPoints;
@@ -200,12 +224,19 @@ public class ArsenalCoordinatingManager {
         if (weaponNumber == instance.triAtlerPegasus.weaponNumber) {
             return instance.triAtlerPegasus.ultPoints;
         }
+        if (weaponNumber == instance.snapComplex.weaponNumber) {
+            return instance.snapComplex.ultPoints;
+        }
+        if (weaponNumber == instance.akonda.weaponNumber) {
+            return instance.akonda.ultPoints;
+        }
         return 10;
     }
 
     public void setupArsenalInventory() {
-        instance.arsenalInventory.ARSENAL.setItem(10, instance.pistol.item());
-        instance.arsenalInventory.ARSENAL.setItem(19, instance.pistolLight.item());
+        instance.arsenalInventory.ARSENAL.setItem(10, instance.snap.item());
+        instance.arsenalInventory.ARSENAL.setItem(19, instance.snapLight.item());
+        instance.arsenalInventory.ARSENAL.setItem(28, instance.snapComplex.item());
 
         instance.arsenalInventory.ARSENAL.setItem(11, instance.nova.item());
         instance.arsenalInventory.ARSENAL.setItem(20, instance.novaPuls.item());
@@ -215,15 +246,17 @@ public class ArsenalCoordinatingManager {
         instance.arsenalInventory.ARSENAL.setItem(21, instance.triAtlerExtend.item());
         instance.arsenalInventory.ARSENAL.setItem(30, instance.triAtlerPegasus.item());
 
+        instance.arsenalInventory.ARSENAL.setItem(13, instance.akonda.item());
+
         instance.arsenalInventory.ARSENAL.setItem(45, instance.arsenalInventory.info());
     }
 
     public void castUltimate(Player player) {
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
-        if (instance.selectionManager.weapon.get(player) == instance.pistol.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player) == instance.snap.weaponNumber) {
             instance.heliTornedo.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.pistolLight.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player) == instance.snapLight.weaponNumber) {
             instance.platzRegen.cast(player);
         }
         if (instance.selectionManager.weapon.get(player) == instance.nova.weaponNumber) {
@@ -243,6 +276,12 @@ public class ArsenalCoordinatingManager {
         }
         if (instance.selectionManager.weapon.get(player) == instance.triAtlerPegasus.weaponNumber) {
             instance.sonnenschutz.cast(player);
+        }
+        if (instance.selectionManager.weapon.get(player) == instance.snapComplex.weaponNumber) {
+            instance.krawumKreisel.cast(player);
+        }
+        if (instance.selectionManager.weapon.get(player) == instance.akonda.weaponNumber) {
+            instance.krawumKreisel.cast(player);
         }
     }
 }

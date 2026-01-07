@@ -2,11 +2,13 @@ package org.cws.ultimatePaintOff;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.cws.ultimatePaintOff.arsenal.primaryWeapons.akonda.Akonda;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.Nova;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.NovaExtend;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.NovaPuls;
-import org.cws.ultimatePaintOff.arsenal.primaryWeapons.pistol.Pistol;
-import org.cws.ultimatePaintOff.arsenal.primaryWeapons.pistol.PistolLight;
+import org.cws.ultimatePaintOff.arsenal.primaryWeapons.snap.Snap;
+import org.cws.ultimatePaintOff.arsenal.primaryWeapons.snap.SnapComplex;
+import org.cws.ultimatePaintOff.arsenal.primaryWeapons.snap.SnapLight;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.triatler.TriAtler;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.triatler.TriAtlerExtend;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.triatler.TriAtlerPegasus;
@@ -40,20 +42,23 @@ public final class UltimatePaintOff extends JavaPlugin {
     public ArsenalInventory arsenalInventory;
     public VoteInventory voteInventory;
 
-    public Pistol pistol;
-    public PistolLight pistolLight;
+    public Snap snap;
+    public SnapLight snapLight;
     public Nova nova;
     public NovaPuls novaPuls;
     public NovaExtend novaExtend;
     public TriAtler triAtler;
     public TriAtlerExtend triAtlerExtend;
     public TriAtlerPegasus triAtlerPegasus;
+    public SnapComplex snapComplex;
+    public Akonda akonda;
 
     public HeliTornedo heliTornedo;
     public PlatzRegen platzRegen;
     public Sonnenschutz sonnenschutz;
     public JettBlaster jettBlaster;
     public FokusBooster fokusBooster;
+    public KrawumKreisel krawumKreisel;
 
     @Override
     public void onEnable() {
@@ -118,14 +123,16 @@ public final class UltimatePaintOff extends JavaPlugin {
     }
 
     private void registerWeapons() {
-        this.pistol = new Pistol();
-        this.pistolLight = new PistolLight();
+        this.snap = new Snap();
+        this.snapLight = new SnapLight();
         this.nova = new Nova();
         this.novaPuls = new NovaPuls();
         this.novaExtend = new NovaExtend();
         this.triAtler = new TriAtler();
         this.triAtlerExtend = new TriAtlerExtend();
         this.triAtlerPegasus = new TriAtlerPegasus();
+        this.snapComplex = new SnapComplex();
+        this.akonda = new Akonda();
     }
 
     private void registerUlts() {
@@ -134,6 +141,7 @@ public final class UltimatePaintOff extends JavaPlugin {
         this.sonnenschutz = new Sonnenschutz();
         this.jettBlaster = new JettBlaster();
         this.fokusBooster = new FokusBooster();
+        this.krawumKreisel = new KrawumKreisel();
     }
 
     private void registerCommand() {

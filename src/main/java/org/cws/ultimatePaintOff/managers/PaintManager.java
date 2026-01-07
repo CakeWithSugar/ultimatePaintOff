@@ -239,4 +239,8 @@ public class PaintManager {
         return loc.getBlockX() == refLoc.getBlockX() + x &&
                 loc.getBlockZ() == refLoc.getBlockZ() + z;
     }
+
+    public String stripColorCodes(String input) {
+        return input.replaceAll("§[0-9a-fk-or]", "");
+    }
 }
