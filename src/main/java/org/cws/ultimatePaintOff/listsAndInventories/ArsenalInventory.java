@@ -30,7 +30,7 @@ public class ArsenalInventory {
         INFO.setItem(3, sonnenschutz());
         INFO.setItem(4, jettBlaster());
         INFO.setItem(5, fokusBooster());
-        INFO.setItem(6, non());
+        INFO.setItem(6, krawumKreisel());
         INFO.setItem(7, non());
     }
 
@@ -56,7 +56,7 @@ public class ArsenalInventory {
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.platzRegen.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Feuert einen Wolke aus Farbe in die §eBlickrichtung§7.");
+            lore.add("§7Feuert eine Wolke aus Farbe in die §eBlickrichtung§7.");
             lore.add("§7Die Wolke §efliegt§7 in die Luft und schwebt für §3" + instance.platzRegen.duration + "§7 Sekunden");
             lore.add("§7in die §egleiche Richtung§7.");
             lore.add("§7Dabei tropfen Farbkugeln runter, welche Blöcke §eeinfärben§7");
@@ -114,6 +114,24 @@ public class ArsenalInventory {
             lore.add("§7jeder §everursachte Schaden§7 wird um §3+"+ instance.fokusBooster.damageBoost +" §7gesteigert.");
             lore.add("§7Kugeln §emakieren§7 für §3"+ instance.fokusBooster.markSeconds +"§7 Sekunden den Gegner, wenn sie treffen.");
             lore.add("§7Während der dauer können keine §eUltpunkte§7 erhalten werden.");
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+        }
+        return item;
+    }
+
+    public ItemStack krawumKreisel() {
+        ItemStack item = new ItemStack(Material.SUNFLOWER);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName("§6"+ instance.krawumKreisel.name);
+            List<String> lore = new ArrayList<>();
+            lore.add("§7Feuert einen Kreisel aus Farbe in die §eBlickrichtung§7.");
+            lore.add("§7Der Kreisel §efliegt§7 in die Luft und schwebt für §3" + instance.krawumKreisel.duration + "§7 Sekunden");
+            lore.add("§7nach §eoben§7.");
+            lore.add("§7Dabei schießt er §eFarbkugeln §7in §ezufällige Richtungen§7, welche");
+            lore.add("§7bei aufprall §eexplodieren§7, Blöcke §eeinfärben §7und gegnern");
+            lore.add("§3" + instance.krawumKreisel.damage + "§7 Explosionsschaden zufügen.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }

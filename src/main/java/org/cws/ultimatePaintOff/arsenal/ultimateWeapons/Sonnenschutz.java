@@ -26,6 +26,7 @@ public class Sonnenschutz {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
             instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
@@ -73,6 +74,7 @@ public class Sonnenschutz {
             if (snowballChild.isDead() || !snowballChild.isValid()) {
                 return;
             }
+            player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 0, true, true));
             Location shieldCenter = snowballChild.getLocation();
             double currentRadius = distance.updateAndGet(v -> (v - abnahme));
             List<Player> playersToAffect = instance.gameManager.teamOfPlayer(player);
@@ -104,14 +106,14 @@ public class Sonnenschutz {
 
                     if (distanceSquared <= currentRadius * currentRadius) {
                         if (Math.abs(targetLoc.getY() - origin.getY()) <= 2.0) {
-                            target.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 0, true, false));
+                            target.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20, 0, true, false));
                         }
                     }
                 }
             }
             if (currentRadius <= 1) {
                 Objects.requireNonNull(shieldCenter.getWorld()).spawnParticle(
-                        Particle.FIREWORKS_SPARK, snowballChild.getLocation(), 40, 0, 0, 0, 0.1);
+                        Particle.FIREWORK, snowballChild.getLocation(), 40, 0, 0, 0, 0.1);
                 Objects.requireNonNull(shieldCenter.getWorld()).spawnParticle(
                         Particle.END_ROD, snowballChild.getLocation(), 120, 0, 0, 0, 0.5);
                 top.getWorld().playSound(top, Sound.ENTITY_FIREWORK_ROCKET_BLAST_FAR, 2.0f, 0.5f);

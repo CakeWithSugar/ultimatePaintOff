@@ -24,7 +24,7 @@ public class AkondaExtend {
     private final int coolDown = 0;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
-    private final float yawOffset = 40;
+    private final float yawOffset = 20;
     private final boolean randomizeYaw = true;
 
     public ItemStack item() {

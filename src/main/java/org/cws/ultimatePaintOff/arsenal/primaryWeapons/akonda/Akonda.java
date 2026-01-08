@@ -13,7 +13,7 @@ public class Akonda {
     public final Material material = Material.IRON_SHOVEL;
     public final int weaponNumber = 10;
     public final int cost = 8;
-    public final int ultPoints = 300;
+    public final int ultPoints = 320;
     public final int damage = 4;
     public final int explosionDamage = 0;
 
@@ -24,7 +24,7 @@ public class Akonda {
     private final int coolDown = 0;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
-    private final float yawOffset = 40;
+    private final float yawOffset = 30;
     private final boolean randomizeYaw = true;
 
     public ItemStack item() {

@@ -1,5 +1,6 @@
 package org.cws.ultimatePaintOff.arsenal.ultimateWeapons;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -17,6 +18,7 @@ public class FokusBooster {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
             instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
@@ -25,7 +27,7 @@ public class FokusBooster {
     public void launch (Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * duration, 0));
         for (Player p : instance.gameManager.teamOfPlayer(player)) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * duration, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 20 * duration, 0));
         }
     }
 }

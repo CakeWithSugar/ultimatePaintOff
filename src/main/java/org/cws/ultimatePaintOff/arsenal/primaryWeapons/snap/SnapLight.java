@@ -13,7 +13,7 @@ public class SnapLight {
     public final Material material = Material.IRON_HOE;
     public final int weaponNumber = 2;
     public final int cost = 6;
-    public final int ultPoints = 240;
+    public final int ultPoints = 260;
     public final int damage = 4;
     public final int explosionDamage = 0;
 

@@ -51,6 +51,9 @@ public class ArsenalCoordinatingManager {
         if (objectName.equals(instance.akonda.name)) {
             instance.damageManager.damagePlayer(player, attacker, instance.akonda.damage);
         }
+        if (objectName.equals(instance.akondaExtend.name)) {
+            instance.damageManager.damagePlayer(player, attacker, instance.akondaExtend.damage);
+        }
     }
 
     public ItemStack getPrimaryItemByWeaponNumber(int weapon) {
@@ -84,6 +87,9 @@ public class ArsenalCoordinatingManager {
         }
         if (weapon == instance.akonda.weaponNumber) {
             item = instance.akonda.gameItem();
+        }
+        if (weapon == instance.akondaExtend.weaponNumber) {
+            item = instance.akondaExtend.gameItem();
         }
         return item;
     }
@@ -139,6 +145,9 @@ public class ArsenalCoordinatingManager {
         }
         if (instance.akonda.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.akonda.cost)) {
             instance.akonda.shoot(player);
+        }
+        if (instance.akondaExtend.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.akondaExtend.cost)) {
+            instance.akondaExtend.shoot(player);
         }
     }
 
@@ -197,6 +206,9 @@ public class ArsenalCoordinatingManager {
         if (instance.itemManager.isItem(item, instance.akonda.material, instance.akonda.name)) {
             instance.selectionManager.put(instance.akonda.weaponNumber,instance.akonda.name,player);
         }
+        if (instance.itemManager.isItem(item, instance.akondaExtend.material, instance.akondaExtend.name)) {
+            instance.selectionManager.put(instance.akondaExtend.weaponNumber,instance.akondaExtend.name,player);
+        }
     }
 
     public int getUltPointsByWeaponNumber(int weaponNumber) {
@@ -230,6 +242,9 @@ public class ArsenalCoordinatingManager {
         if (weaponNumber == instance.akonda.weaponNumber) {
             return instance.akonda.ultPoints;
         }
+        if (weaponNumber == instance.akondaExtend.weaponNumber) {
+            return instance.akondaExtend.ultPoints;
+        }
         return 10;
     }
 
@@ -247,12 +262,12 @@ public class ArsenalCoordinatingManager {
         instance.arsenalInventory.ARSENAL.setItem(30, instance.triAtlerPegasus.item());
 
         instance.arsenalInventory.ARSENAL.setItem(13, instance.akonda.item());
+        instance.arsenalInventory.ARSENAL.setItem(22, instance.akondaExtend.item());
 
         instance.arsenalInventory.ARSENAL.setItem(45, instance.arsenalInventory.info());
     }
 
     public void castUltimate(Player player) {
-        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
         if (instance.selectionManager.weapon.get(player) == instance.snap.weaponNumber) {
             instance.heliTornedo.cast(player);
         }

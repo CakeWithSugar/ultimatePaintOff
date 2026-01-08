@@ -13,7 +13,7 @@ public class TriAtler {
     public final Material material = Material.BOW;
     public final int weaponNumber = 6;
     public final int cost = 8;
-    public final int costSecondary = cost*2;
+    public final int costSecondary = cost*3;
 
     public final int ultPoints = 280;
     public final int damage = 4;

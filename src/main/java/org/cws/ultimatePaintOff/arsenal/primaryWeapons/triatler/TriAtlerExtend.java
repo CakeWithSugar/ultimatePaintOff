@@ -13,9 +13,9 @@ public class TriAtlerExtend {
     public final Material material = Material.BOW;
     public final int weaponNumber = 7;
     public final int cost = 10;
-    public final int costSecondary = cost*2;
+    public final int costSecondary = cost*3;
 
-    public final int ultPoints = 280;
+    public final int ultPoints = 260;
     public final int damage = 2;
     public final int explosionDamage = 0;
 

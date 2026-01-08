@@ -9,12 +9,12 @@ public class SnapComplex {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Snap Complex";
     public final String classification = "Painting";
-    public final String ultimateName = instance.fokusBooster.name;
+    public final String ultimateName = instance.krawumKreisel.name;
     public final Material material = Material.GOLDEN_HOE;
     public final int weaponNumber = 9;
     public final int cost = 8;
-    public final int ultPoints = 260;
-    public final int damage = 6;
+    public final int ultPoints = 300;
+    public final int damage = 4;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 2.5;

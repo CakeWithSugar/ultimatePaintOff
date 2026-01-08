@@ -2,6 +2,7 @@ package org.cws.ultimatePaintOff.arsenal.ultimateWeapons;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
@@ -27,6 +28,7 @@ public class HeliTornedo {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
             instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
@@ -35,17 +37,18 @@ public class HeliTornedo {
     public void launch(Player player) {
         Location startLoc = player.getLocation().clone();
         int game = instance.gameManager.getGameNumber(player);
-        
-        Snowball snowballChild = player.getWorld().spawn(player.getLocation(), Snowball.class);
+        startLoc.add(0,1,0);
+
+        Snowball snowballChild = startLoc.getWorld().spawn(startLoc, Snowball.class);
         Vector drc = new Vector(0,0,0);
         snowballChild.setVelocity(drc);
         Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
         snowballChild.customName(customName);
-        snowballChild.setCustomNameVisible(true);
+        snowballChild.setVisibleByDefault(false);
         snowballChild.setGravity(false);
-        snowballChild.setGlowing(true);
-        
-        startLoc.add(0,1,0);
+        snowballChild.setCustomNameVisible(true);
+        Bukkit.getScheduler().runTaskLater(instance, snowballChild::remove, (time) * 20);
+
         Vector direction = startLoc.getDirection().normalize();
 
         AtomicBoolean stop = new AtomicBoolean(false);

@@ -106,7 +106,7 @@ public class SnowballManager {
                 removeSnowball(snowball);
                 return;
             }
-            if (particle == Particle.REDSTONE) {
+            if (particle == Particle.DUST) {
                 instance.paintManager.playColorParticle(color, snowball.getLocation(), 0.1, 1, 0.1, 1.0f);
             } else {
                 snowball.getWorld().spawnParticle(particle, snowball.getLocation(), 1, 0, 0, 0, 0.01);

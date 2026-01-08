@@ -23,6 +23,7 @@ public class PlatzRegen {
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
             instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
@@ -30,7 +31,7 @@ public class PlatzRegen {
 
     public void launch(Player player) {
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 0.1f, 2.0f);
-        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.REDSTONE,false,0,0,0,0,false);
+        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.DUST,false,0,0,0,0,false);
     }
 
     public void phaseOne(Snowball snowball, Block hitBlock, Player player) {
@@ -46,7 +47,7 @@ public class PlatzRegen {
         snowballChild.customName(customName);
         snowballChild.setCustomNameVisible(true);
         snowballChild.setShooter(snowball.getShooter());
-        snowball.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, loc, 1, 0, 0, 0, 0.005);
+        snowball.getWorld().spawnParticle(Particle.EXPLOSION, loc, 1, 0, 0, 0, 0.005);
         hitBlock.getWorld().playSound(hitBlock.getLocation(), Sound.BLOCK_SLIME_BLOCK_HIT, 1.0f, 2.0f);
 
         Bukkit.getScheduler().runTaskTimer(instance, () -> {
@@ -81,7 +82,7 @@ public class PlatzRegen {
         snowballChild.setVisibleByDefault(false);
         snowballChild.setShooter(player);
 
-        hitLocation.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, hitLocation, 1, 0, 0, 0, 0.005);
+        hitLocation.getWorld().spawnParticle(Particle.EXPLOSION, hitLocation, 1, 0, 0, 0, 0.005);
         hitLocation.getWorld().playSound(hitLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 5.0f, 2.0f);
         hitLocation.getWorld().playSound(hitLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 2.75f, 1.0f);
         hitLocation.getWorld().playSound(hitLocation, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.5f, 0.5f);
@@ -103,11 +104,11 @@ public class PlatzRegen {
                 return;
             }
             Location loc2 = snowballChild.getLocation();
-            snowballChild.getWorld().spawnParticle(Particle.DRIP_WATER, loc2, 5, 3, 0, 3, 0.5);
-            snowballChild.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc2, 75, 3, 0.5, 3, 0.05);
+            snowballChild.getWorld().spawnParticle(Particle.DRIPPING_WATER, loc2, 5, 3, 0, 3, 0.5);
+            snowballChild.getWorld().spawnParticle(Particle.SMOKE, loc2, 75, 3, 0.5, 3, 0.05);
             snowballChild.getWorld().spawnParticle(Particle.CLOUD, loc2, 75, 3, 0.5, 3, 0.05);
-            snowballChild.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc2, 50, 3, 0.5, 3, 0.05);
-            snowballChild.getWorld().spawnParticle(Particle.SNOW_SHOVEL, loc2, 25, 3, 0.5, 3, 0.05);
+            snowballChild.getWorld().spawnParticle(Particle.FIREWORK, loc2, 50, 3, 0.5, 3, 0.05);
+            snowballChild.getWorld().spawnParticle(Particle.SNOWFLAKE, loc2, 25, 3, 0.5, 3, 0.05);
             snowballChild.getWorld().spawnParticle(Particle.COMPOSTER, loc2, 1, 3, 0.5, 3, 0.5);
             instance.paintManager.playColorParticle(colorPara,snowballChild.getLocation(),5,40,1.5, 3f);
 

@@ -214,7 +214,7 @@ public class PaintManager {
 
         for (int i = 0; i < count; i++) {
             Objects.requireNonNull(loc.getWorld()).spawnParticle(
-                    Particle.REDSTONE,
+                    Particle.DUST,
                     loc.getX() + (Math.random() * width * 2 - width),
                     loc.getY() + (Math.random() * hight * 2 - hight),
                     loc.getZ() + (Math.random() * width * 2 - width),

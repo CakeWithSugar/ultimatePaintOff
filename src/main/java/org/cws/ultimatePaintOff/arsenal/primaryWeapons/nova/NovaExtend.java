@@ -12,14 +12,14 @@ public class NovaExtend {
     public final String ultimateName = instance.heliTornedo.name;
     public final Material material = Material.GOLDEN_PICKAXE;
     public final int weaponNumber = 5;
-    public final int cost = 20;
+    public final int cost = 16;
     public final int ultPoints = 300;
     public final int damage = 1;
     public final int explosionDamage = 4;
 
     private final double speedMultiplier = 1.5;
     private final double gravityLevel = 0;
-    private final int destructionTime = 10;
+    private final int destructionTime = 8;
     private final int paintLength = 1;
     private final int coolDown = 10;
     private final int explosionRadius = 1;
