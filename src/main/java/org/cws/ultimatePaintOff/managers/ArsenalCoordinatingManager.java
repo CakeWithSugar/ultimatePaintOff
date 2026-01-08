@@ -281,7 +281,10 @@ public class ArsenalCoordinatingManager {
             instance.krawumKreisel.cast(player);
         }
         if (instance.selectionManager.weapon.get(player) == instance.akonda.weaponNumber) {
-            instance.krawumKreisel.cast(player);
+            instance.fokusBooster.cast(player);
+        }
+        if (instance.selectionManager.weapon.get(player) == instance.akondaExtend.weaponNumber) {
+            instance.jettBlaster.cast(player);
         }
     }
 }

@@ -12,6 +12,14 @@ public class StopExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
+            if (instance.queueManager.checkIfInQueue(player)) {
+                instance.messageManager.sendError(player,"You are already in a started game!");
+                return true;
+            }
+            if (!instance.gameManager.checkIfInGame(player)) {
+                instance.messageManager.sendError(player,"You are not in a game!");
+                return true;
+            }
             int game = instance.gameManager.getGameNumber(player);
             if (game == -1) {
                 instance.messageManager.sendError(player, "You are not in a game!" + game);

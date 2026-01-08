@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import org.bukkit.entity.Snowball;
+import net.kyori.adventure.text.Component;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -33,6 +35,16 @@ public class HeliTornedo {
     public void launch(Player player) {
         Location startLoc = player.getLocation().clone();
         int game = instance.gameManager.getGameNumber(player);
+        
+        Snowball snowballChild = player.getWorld().spawn(player.getLocation(), Snowball.class);
+        Vector drc = new Vector(0,0,0);
+        snowballChild.setVelocity(drc);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        snowballChild.customName(customName);
+        snowballChild.setCustomNameVisible(true);
+        snowballChild.setGravity(false);
+        snowballChild.setGlowing(true);
+        
         startLoc.add(0,1,0);
         Vector direction = startLoc.getDirection().normalize();
 

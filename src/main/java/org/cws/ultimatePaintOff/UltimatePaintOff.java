@@ -3,6 +3,7 @@ package org.cws.ultimatePaintOff;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.akonda.Akonda;
+import org.cws.ultimatePaintOff.arsenal.primaryWeapons.akonda.AkondaExtend;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.Nova;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.NovaExtend;
 import org.cws.ultimatePaintOff.arsenal.primaryWeapons.nova.NovaPuls;
@@ -52,6 +53,7 @@ public final class UltimatePaintOff extends JavaPlugin {
     public TriAtlerPegasus triAtlerPegasus;
     public SnapComplex snapComplex;
     public Akonda akonda;
+    public AkondaExtend akondaExtend;
 
     public HeliTornedo heliTornedo;
     public PlatzRegen platzRegen;
@@ -133,6 +135,7 @@ public final class UltimatePaintOff extends JavaPlugin {
         this.triAtlerPegasus = new TriAtlerPegasus();
         this.snapComplex = new SnapComplex();
         this.akonda = new Akonda();
+        this.akondaExtend = new AkondaExtend();
     }
 
     private void registerUlts() {

@@ -5,20 +5,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
-public class Akonda {
+public class AkondaExtend {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
-    public final String name = "Akonda";
-    public final String classification = "Painting";
-    public final String ultimateName = instance.fokusBooster.name;
-    public final Material material = Material.IRON_SHOVEL;
-    public final int weaponNumber = 10;
-    public final int cost = 8;
+    public final String name = "Akonda Extend";
+    public final String classification = "Controlling";
+    public final String ultimateName = instance.jettBlaster.name;
+    public final Material material = Material.GOLDEN_SHOVEL;
+    public final int weaponNumber = 11;
+    public final int cost = 12;
     public final int ultPoints = 300;
-    public final int damage = 4;
+    public final int damage = 3;
     public final int explosionDamage = 0;
 
-    private final double speedMultiplier = 2.0;
-    private final double gravityLevel = 0.4;
+    private final double speedMultiplier = 2.25;
+    private final double gravityLevel = 0.3;
     private final int destructionTime = 5;
     private final int paintLength = 2;
     private final int coolDown = 0;

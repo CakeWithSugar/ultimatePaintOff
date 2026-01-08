@@ -13,6 +13,14 @@ public class StartExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
+            if (!instance.queueManager.checkIfInQueue(player)) {
+                instance.messageManager.sendError(player,"You are not in a queue!");
+                return true;
+            }
+            if (instance.gameManager.checkIfInGame(player)) {
+                instance.messageManager.sendError(player,"You are already in a game!");
+                return true;
+            }
             int queue = instance.queueManager.getQueueNumber(player);
             instance.queueManager.active[queue] = true;
             String arenaName;
