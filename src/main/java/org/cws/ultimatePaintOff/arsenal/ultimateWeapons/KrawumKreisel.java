@@ -31,7 +31,7 @@ public class KrawumKreisel {
 
     public void launch(Player player) {
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT, 0.1f, 2.0f);
-        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.DUST,false,0,0,0,0,false);
+        instance.snowballManager.createSnowball(player,null, 1.5, 0.1, name, 0, false, 4, Particle.REDSTONE,false,0,0,0,0,false);
     }
 
     public void phaseOne(Snowball snowball, Block hitBlock,Player player) {
@@ -48,7 +48,7 @@ public class KrawumKreisel {
         snowballChild.setGravity(false);
         snowballChild.setGlowing(true);
         snowballChild.setShooter(snowball.getShooter());
-        snowball.getWorld().spawnParticle(Particle.SONIC_BOOM, loc, 1, 0, 0, 0, 0.005);
+        snowball.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, loc, 1, 0, 0, 0, 0.005);
         hitBlock.getWorld().playSound(hitBlock.getLocation(), Sound.BLOCK_SLIME_BLOCK_HIT, 1.0f, 2.0f);
 
         Bukkit.getScheduler().runTaskTimer(instance, () -> {

@@ -27,10 +27,10 @@ public class PointsManager {
                 if (player.hasPotionEffect(PotionEffectType.INVISIBILITY)) {
                     fuelAmount(player, 12);
                 }
-                if (player.hasPotionEffect(PotionEffectType.STRENGTH)) {
+                if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
                     fuelAmount(player, instance.fokusBooster.regenBoost);
                 }
-                if (player.hasPotionEffect(PotionEffectType.RESISTANCE)) {
+                if (player.hasPotionEffect(PotionEffectType.DAMAGE_RESISTANCE)) {
                     player.getLocation().getWorld().spawnParticle(Particle.END_ROD, player.getLocation().add(0, 0, 0), 5, 0.25, 0.25, 0.25, 0);
                 }
                 if (instance.gameManager.teamA.get(queue).contains(player)) {

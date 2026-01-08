@@ -122,8 +122,6 @@ public class PaintManager {
         exeptions.add(Material.CHISELED_DEEPSLATE);
         exeptions.add(Material.POLISHED_DEEPSLATE);
         exeptions.add(Material.TUFF);
-        exeptions.add(Material.CHISELED_TUFF);
-        exeptions.add(Material.POLISHED_TUFF);
         exeptions.add(Material.PACKED_MUD);
         exeptions.add(Material.SAND);
         exeptions.add(Material.RED_SAND);
@@ -143,7 +141,6 @@ public class PaintManager {
         exeptions.add(Material.MELON);
         exeptions.add(Material.BRICK);
         exeptions.add(Material.NETHER_BRICK);
-        exeptions.add(Material.RESIN_BRICK);
         exeptions.add(Material.SCULK);
         exeptions.add(Material.BEDROCK);
         exeptions.add(Material.BARREL);
@@ -217,7 +214,7 @@ public class PaintManager {
 
         for (int i = 0; i < count; i++) {
             Objects.requireNonNull(loc.getWorld()).spawnParticle(
-                    Particle.DUST,
+                    Particle.REDSTONE,
                     loc.getX() + (Math.random() * width * 2 - width),
                     loc.getY() + (Math.random() * hight * 2 - hight),
                     loc.getZ() + (Math.random() * width * 2 - width),

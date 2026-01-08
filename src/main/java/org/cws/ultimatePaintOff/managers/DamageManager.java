@@ -12,12 +12,12 @@ public class DamageManager {
         int game = instance.gameManager.getGameNumber(player);
         if ((instance.gameManager.teamA.get(game).contains(player) && instance.gameManager.teamA.get(game).contains(attacker))
                 || (instance.gameManager.teamB.get(game).contains(player) && instance.gameManager.teamB.get(game).contains(attacker))
-                || player.hasPotionEffect(PotionEffectType.RESISTANCE)) {
+                || player.hasPotionEffect(PotionEffectType.DAMAGE_RESISTANCE)) {
             return;
         }
 
         if (attacker != null) {
-            if (attacker.hasPotionEffect(PotionEffectType.STRENGTH)) {
+            if (attacker.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
                 damage += instance.fokusBooster.damageBoost;
             }
         }
@@ -25,7 +25,7 @@ public class DamageManager {
             death(player, attacker);
         } else {
             player.setHealth(player.getHealth() - damage);
-            if (attacker.hasPotionEffect(PotionEffectType.STRENGTH)) {
+            if (attacker.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 20 * instance.fokusBooster.markTime, 0));
             }
         }

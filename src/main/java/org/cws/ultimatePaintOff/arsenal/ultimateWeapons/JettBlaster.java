@@ -54,7 +54,7 @@ public class JettBlaster {
                 player.setVelocity(new Vector(direction.getX()/moveDivider, 0.1 + (boost * 0.4), direction.getZ()/moveDivider));
             }
             Location particleLoc = player.getLocation().clone().subtract(0, 0.5, 0);
-            player.getWorld().spawnParticle(Particle.FIREWORK, particleLoc, 1, 0.25, 0.1, 0.25, 0.01);
+            player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, particleLoc, 1, 0.25, 0.1, 0.25, 0.01);
             instance.paintManager.playColorParticle(color, playerLoc, 0.5,1,1, 4f);
             instance.paintManager.playColorParticle(color, respawn, 0.5,1,2, 3f);
         }, 0, 1).getTaskId();
@@ -74,7 +74,7 @@ public class JettBlaster {
             }, 20 * duration).getTaskId();
         } else {
             Bukkit.getScheduler().cancelTask(inPhase.get(player));
-            player.getWorld().spawnParticle(Particle.FIREWORK, player.getLocation(), 10, 0, 0.5, 0, 0.1);
+            player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation(), 10, 0, 0.5, 0, 0.1);
             player.teleport(respawn);
             player.setAllowFlight(false);
             inPhase.remove(player);
@@ -87,8 +87,8 @@ public class JettBlaster {
         final int destructionTime = 40;
         final boolean glowing = false;
         final int paintLength = 15;
-        final Particle trailParticle = Particle.FIREWORK;
-        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BREEZE_WIND_BURST, 0.1f, 3.0f);
+        final Particle trailParticle = Particle.FIREWORKS_SPARK;
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BLAZE_AMBIENT, 0.1f, 3.0f);
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 0.1f, 3.0f);
         instance.snowballManager.createSnowball(player,null,speed,0,name,destructionTime,glowing,paintLength,trailParticle,false,cooldown,radius,damage,0,false);
     }

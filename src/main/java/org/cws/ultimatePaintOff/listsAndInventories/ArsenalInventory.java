@@ -35,7 +35,7 @@ public class ArsenalInventory {
     }
 
     public ItemStack heliTornedo() {
-        ItemStack item = new ItemStack(Material.WIND_CHARGE);
+        ItemStack item = new ItemStack(Material.FIREWORK_ROCKET);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.heliTornedo.name);
@@ -85,7 +85,7 @@ public class ArsenalInventory {
     }
 
     public ItemStack jettBlaster() {
-        ItemStack item = new ItemStack(Material.WHITE_HARNESS);
+        ItemStack item = new ItemStack(Material.ELYTRA);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.jettBlaster.name);

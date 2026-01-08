@@ -10,7 +10,7 @@ public class Nova {
     public final String name = "Nova";
     public final String classification = "Controlling";
     public final String ultimateName = instance.sonnenschutz.name;
-    public final Material material = Material.COPPER_PICKAXE;
+    public final Material material = Material.IRON_PICKAXE;
     public final int weaponNumber = 3;
     public final int cost = 20;
     public final int ultPoints = 300;

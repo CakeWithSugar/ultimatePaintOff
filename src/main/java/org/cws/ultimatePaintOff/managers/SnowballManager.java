@@ -28,8 +28,8 @@ public class SnowballManager {
             Random random = new Random();
             yawOffset = random.nextFloat(2 * yawOffset + 1) - yawOffset;
         }
-        float yaw = player.getYaw() + yawOffset;
-        float pitch = player.getPitch();
+        float yaw = player.getLocation().getYaw() + yawOffset;
+        float pitch = player.getLocation().getPitch();
 
         double radianYaw = Math.toRadians(yaw);
         double radianPitch = Math.toRadians(pitch);
@@ -106,7 +106,7 @@ public class SnowballManager {
                 removeSnowball(snowball);
                 return;
             }
-            if (particle == Particle.DUST) {
+            if (particle == Particle.REDSTONE) {
                 instance.paintManager.playColorParticle(color, snowball.getLocation(), 0.1, 1, 0.1, 1.0f);
             } else {
                 snowball.getWorld().spawnParticle(particle, snowball.getLocation(), 1, 0, 0, 0, 0.01);

@@ -104,14 +104,14 @@ public class Sonnenschutz {
 
                     if (distanceSquared <= currentRadius * currentRadius) {
                         if (Math.abs(targetLoc.getY() - origin.getY()) <= 2.0) {
-                            target.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20, 0, true, false));
+                            target.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 0, true, false));
                         }
                     }
                 }
             }
             if (currentRadius <= 1) {
                 Objects.requireNonNull(shieldCenter.getWorld()).spawnParticle(
-                        Particle.FIREWORK, snowballChild.getLocation(), 40, 0, 0, 0, 0.1);
+                        Particle.FIREWORKS_SPARK, snowballChild.getLocation(), 40, 0, 0, 0, 0.1);
                 Objects.requireNonNull(shieldCenter.getWorld()).spawnParticle(
                         Particle.END_ROD, snowballChild.getLocation(), 120, 0, 0, 0, 0.5);
                 top.getWorld().playSound(top, Sound.ENTITY_FIREWORK_ROCKET_BLAST_FAR, 2.0f, 0.5f);

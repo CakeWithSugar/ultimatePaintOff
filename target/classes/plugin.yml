@@ -1,7 +1,7 @@
 name: ultimatePaintOff
 version: '1.0'
 main: org.cws.ultimatePaintOff.UltimatePaintOff
-api-version: '1.21'
+api-version: '1.19'
 commands:
     poarsenal:
         description: Open Arsenal Inventory

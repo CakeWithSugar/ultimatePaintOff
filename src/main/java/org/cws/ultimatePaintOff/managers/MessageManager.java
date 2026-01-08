@@ -182,7 +182,7 @@ public class MessageManager {
                         }
                         for (Player player : instance.gameManager.game.get(game)) {
                             instance.messageManager.sendInfo(player,colA + "§l" + countA + " §7| " + colB + "§l" + countB);
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 80, 1));
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 1));
                         }
                         Bukkit.getScheduler().scheduleSyncDelayedTask(instance, () -> instance.stopManager.endSequence(game, arena),(80));
                     },(15));

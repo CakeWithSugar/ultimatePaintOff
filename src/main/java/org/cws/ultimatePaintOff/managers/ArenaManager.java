@@ -432,7 +432,7 @@ public class ArenaManager {
                 Location spawnB = new Location(world, deltaX, deltaY + instance.basicValues.spawnHight, deltaZ);
                 player.teleport(spawnB);
             }
-            player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20 * resistanceTime, 1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * resistanceTime, 1));
         } catch (IOException | NumberFormatException e) {
             instance.messageManager.sendError(player,"Error while Teleporting.");
             instance.queueManager.leaveQueue(player,false);

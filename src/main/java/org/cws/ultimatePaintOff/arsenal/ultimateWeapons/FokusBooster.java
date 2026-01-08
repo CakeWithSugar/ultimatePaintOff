@@ -25,7 +25,7 @@ public class FokusBooster {
     public void launch (Player player) {
         player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * duration, 0));
         for (Player p : instance.gameManager.teamOfPlayer(player)) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 20 * duration, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * duration, 0));
         }
     }
 }

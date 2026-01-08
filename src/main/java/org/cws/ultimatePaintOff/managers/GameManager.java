@@ -1,7 +1,12 @@
 package org.cws.ultimatePaintOff.managers;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -12,8 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.bukkit.GameRules.*;
 
 public class GameManager {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
@@ -194,11 +197,11 @@ public class GameManager {
 
     public void setGameRules(String string) {
         World world = instance.getServer().getWorld(string);
-        world.setGameRule(NATURAL_HEALTH_REGENERATION, false);
-        world.setGameRule(SHOW_ADVANCEMENT_MESSAGES, false);
-        world.setGameRule(ADVANCE_TIME, false);
-        world.setGameRule(ADVANCE_WEATHER, false);
-        world.setGameRule(SPAWN_MOBS, false);
+        world.setGameRule(GameRule.NATURAL_REGENERATION, false);
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
     }
 
     public void setColoredName(int queue) {
