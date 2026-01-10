@@ -121,6 +121,7 @@ public class PaintManager {
         exeptions.add(Material.COBBLED_DEEPSLATE);
         exeptions.add(Material.CHISELED_DEEPSLATE);
         exeptions.add(Material.POLISHED_DEEPSLATE);
+        exeptions.add(Material.POLISHED_TUFF);
         exeptions.add(Material.TUFF);
         exeptions.add(Material.PACKED_MUD);
         exeptions.add(Material.SAND);
