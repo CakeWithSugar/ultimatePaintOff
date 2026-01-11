@@ -57,6 +57,7 @@ public class GameManager {
         minuetTimer(queue);
         instance.messageManager.sendStartMessage(queue);
         instance.stopManager.startEndingTimer(queue, arenaName);
+        instance.paintManager.setTeamPainted(queue);
 
         for (Player player : game.get(queue)) {
             instance.inventoryManager.clearInventory(player);
@@ -65,7 +66,9 @@ public class GameManager {
             instance.pointsManager.ultPoint.put(player, 0);
 
             instance.messageManager.sendInfo(player, "Arena: §a" + arenaName);
+            instance.arsenalCoordination.dressUp(player,false);
             instance.arenaManager.portToArena(player, instance.gameManager.arenaName[queue]);
+            instance.scoreManager.updateScore(player);
         }
         instance.pointsManager.fuelTimer(queue);
         setColoredName(queue);
@@ -117,6 +120,7 @@ public class GameManager {
         player.setAllowFlight(false);
         Location lobby = instance.arenaManager.getLobbySpawn();
         player.teleport(lobby);
+        instance.scoreManager.removeScoreboard(player);
         if (throughCommand) {
             instance.messageManager.sendMessage(player, "Left game: " + game);
         } else {
@@ -147,6 +151,7 @@ public class GameManager {
             for (Player player : instance.gameManager.game.get(queue)) {
                 if (min.get() > 0) {
                     instance.messageManager.sendInfo(player, "§a" + min + "§7 Minuets left");
+                    instance.scoreManager.updateScore(player);
                 }
             }
             min.getAndDecrement();
@@ -178,12 +183,14 @@ public class GameManager {
 
     public void removeSneakEffects(Player player) {
         player.getInventory().setHeldItemSlot(1);
+        instance.arsenalCoordination.dressUp(player,false);
         player.removePotionEffect(PotionEffectType.INVISIBILITY);
         player.removePotionEffect(PotionEffectType.SPEED);
     }
 
     public void addSneakEffects(Player player) {
         player.getInventory().setHeldItemSlot(3);
+        instance.arsenalCoordination.dressUp(player,true);
         player.setSaturation(20);
         player.setFoodLevel(20);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 19, true, false), true);
@@ -227,8 +234,8 @@ public class GameManager {
         player.setCustomNameVisible(false);
     }
 
-    public List<Player> teamOfPlayer(Player player) {
-        if (teamA.get(getGameNumber(player)).contains(player)) {
+    public List<Player> teamOfPlayer(Player player,boolean enemy) {
+        if (teamA.get(getGameNumber(player)).contains(player) && !enemy) {
             return teamA.get(getGameNumber(player));
         } else {
             return teamB.get(getGameNumber(player));

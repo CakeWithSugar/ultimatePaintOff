@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
-public class onPlayerToggleSneakListener implements Listener {
+public class PlayerToggleSneakListener implements Listener {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
 
     @EventHandler

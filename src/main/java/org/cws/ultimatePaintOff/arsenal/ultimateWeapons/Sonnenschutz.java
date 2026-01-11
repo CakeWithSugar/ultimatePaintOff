@@ -19,8 +19,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Sonnenschutz {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Sonnenschutz";
-    private final int reichweite = 10;
-    public final double abnahme = 0.15;
+    private final int reichweite = 8;
+    public final double abnahme = 0.2;
     private final double hight = 0.75;
 
     public void cast(Player player) {
@@ -63,13 +63,13 @@ public class Sonnenschutz {
         direction.setX(0);
         direction.setZ(0);
         snowballChild.setVelocity(direction);
-        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player,false)) + name);
         snowballChild.customName(customName);
         snowballChild.setCustomNameVisible(true);
         snowballChild.setShooter(snowball.getShooter());
         snowballChild.setGlowing(true);
         snowballChild.setGravity(false);
-        String color = instance.paintManager.getColorByPlayer(player);
+        String color = instance.paintManager.getColorByPlayer(player,false);
         Bukkit.getScheduler().runTaskTimer(instance, () -> {
             if (snowballChild.isDead() || !snowballChild.isValid()) {
                 return;
@@ -77,7 +77,7 @@ public class Sonnenschutz {
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 0, true, true));
             Location shieldCenter = snowballChild.getLocation();
             double currentRadius = distance.updateAndGet(v -> (v - abnahme));
-            List<Player> playersToAffect = instance.gameManager.teamOfPlayer(player);
+            List<Player> playersToAffect = instance.gameManager.teamOfPlayer(player,false);
 
             for (int i = 0; i < 20; i++) {
                 double angle = 2 * Math.PI * i / 20;

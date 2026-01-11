@@ -43,7 +43,7 @@ public class PlatzRegen {
         direction.setX(0);
         direction.setZ(0);
         snowballChild.setVelocity(direction);
-        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player,false)) + name);
         snowballChild.customName(customName);
         snowballChild.setCustomNameVisible(true);
         snowballChild.setShooter(snowball.getShooter());
@@ -98,7 +98,7 @@ public class PlatzRegen {
             }
         }, 0, 1);
 
-        String colorPara = instance.paintManager.getColorByPlayer(player);
+        String colorPara = instance.paintManager.getColorByPlayer(player,false);
         Bukkit.getScheduler().runTaskTimer(instance, () -> {
             if (snowballChild.isDead() || !snowballChild.isValid()) {
                 return;

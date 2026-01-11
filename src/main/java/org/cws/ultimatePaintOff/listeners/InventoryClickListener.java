@@ -51,5 +51,12 @@ public class InventoryClickListener implements Listener {
                 player.closeInventory();
             }
         }
+        if (event.getInventory().equals(instance.inGameMenu.menu)) {
+            event.setCancelled(true);
+            int clicked = event.getSlot();
+            if (clicked == 8) {
+                player.openInventory(instance.arsenalInventory.ARSENAL);
+            }
+        }
     }
 }

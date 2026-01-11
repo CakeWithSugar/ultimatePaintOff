@@ -34,7 +34,7 @@ public class ItemManager {
         return item;
     }
 
-    public ItemStack createWeapon(Material material, String name, String classification,int ultPoints,String ultimateName,double speed, double gravity, int damage,int paintDepth, int cost, double coolDown,double destructionTime, int explosionRadius, int explosionDamage, float yawOffset, String secondaryAbility) {
+    public ItemStack createWeapon(Material material, String name, String diffyculty,int ultPoints,String ultimateName,double speed, double gravity, int damage,int paintDepth, int cost, double coolDown,double destructionTime, int explosionRadius, int explosionDamage, float yawOffset, String secondaryAbility) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         double cool = coolDown/20;
@@ -44,7 +44,7 @@ public class ItemManager {
             List<String> lore = new ArrayList<>();
             lore.add("§7Ultimate: §e§6" + ultimateName);
             lore.add("§7Ultimate Points needed: §e" + ultPoints);
-            lore.add("§7Classification: §e" + classification);
+            lore.add("§7Difficulty: §e" + diffyculty);
             lore.add("");
             lore.add("§7Bullet speed: §e" + speed);
             lore.add("§7Cost per shot: §e" + cost);

@@ -42,7 +42,7 @@ public class MessageManager {
     public void sendStartMessage(int game) {
         for (Player player : instance.gameManager.game.get(game)) {
             Component main = Component.text(getColoredColor(player, false));
-            Component title = Component.text("§7vs" + getColoredColor(player, true));
+            Component title = Component.text("§7vs " + getColoredColor(player, true));
             Title message = Title.title(main, title);
             player.showTitle(message);
         }
@@ -50,7 +50,7 @@ public class MessageManager {
 
     public void sendUltMessage(Player player,String ultName) {
         for (Player p : instance.gameManager.game.get(instance.gameManager.getGameNumber(player))) {
-            p.sendMessage(" §7> " + instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + ultName);
+            p.sendMessage(" §7> " + instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player,false)) + ultName);
         }
     }
 
@@ -94,7 +94,11 @@ public class MessageManager {
             player.sendActionBar(Component.text(finalText));
             return;
         }
-        player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| Ultpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player))));
+        if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) {
+        player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| §cUltpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player))));
+        } else {
+            player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| Ultpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player))));
+        }
     }
 
     public void sendDeathMessage(Player player, Player attacker, int game) {

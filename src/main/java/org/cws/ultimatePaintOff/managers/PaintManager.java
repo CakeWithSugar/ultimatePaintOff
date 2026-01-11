@@ -12,6 +12,17 @@ import java.util.*;
 public class PaintManager {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     private final Set<Material> exeptions = new HashSet<>();
+    public Map<List<Player>, Integer> teamPainted = new HashMap<>();
+
+    public void setTeamPainted(int queue) {
+        teamPainted.put(instance.gameManager.teamA.get(queue), 0);
+        teamPainted.put(instance.gameManager.teamB.get(queue), 0);
+    }
+
+    public void deleteTeams(int queue) {
+        teamPainted.remove(instance.gameManager.teamA.get(queue));
+        teamPainted.remove(instance.gameManager.teamB.get(queue));
+    }
 
     public void startPaintSequence(Snowball snowball, int lengh,String color,boolean ultPoint) {
         final int[] paintTaskId = {-1};
@@ -36,14 +47,22 @@ public class PaintManager {
             block.setType(Material.valueOf(colorName + "_WOOL"));
             if (ultPoint && blockAbove.getType().equals(Material.AIR)) {
                 instance.pointsManager.grantUltPoint(player);
+                teamPainted.put(instance.gameManager.teamOfPlayer(player,false), teamPainted.get(instance.gameManager.teamOfPlayer(player,false)) + 1);
                 location.getWorld().playSound(location,Sound.BLOCK_HONEY_BLOCK_SLIDE,0.25f,1.5f);
             }
             playColorParticle(colorName, location, 0.5, 2, 0.5, 2f);
         }
     }
 
-    public String getColorByPlayer(Player player) {
+    public String getColorByPlayer(Player player,boolean enemy) {
         int queue = instance.gameManager.getGameNumber(player);
+        if (enemy) {
+            if (instance.gameManager.teamA.get(queue).contains(player)) {
+                return instance.gameManager.colorB[queue];
+            } else if (instance.gameManager.teamB.get(queue).contains(player)) {
+                return instance.gameManager.colorA[queue];
+            }
+        }
         if (instance.gameManager.teamA.get(queue).contains(player)) {
             return instance.gameManager.colorA[queue];
         } else if (instance.gameManager.teamB.get(queue).contains(player)) {

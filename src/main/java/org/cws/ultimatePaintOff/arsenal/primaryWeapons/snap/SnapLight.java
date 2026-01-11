@@ -8,20 +8,20 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class SnapLight {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Snap Light";
-    public final String classification = "Controlling/Painting";
+    public final String classification = "⭐☆☆☆☆";
     public final String ultimateName = instance.platzRegen.name;
     public final Material material = Material.IRON_HOE;
     public final int weaponNumber = 2;
     public final int cost = 6;
-    public final int ultPoints = 260;
-    public final int damage = 4;
+    public final int ultPoints = 300;
+    public final int damage = 2;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 2.0;
     private final double gravityLevel = 0;
     private final int destructionTime = 5;
     private final int paintLength = 2;
-    private final int coolDown = 5;
+    private final int coolDown = 0;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
     private final float yawOffset = 0;

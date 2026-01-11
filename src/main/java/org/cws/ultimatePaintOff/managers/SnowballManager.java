@@ -21,7 +21,7 @@ public class SnowballManager {
     public final Map<Snowball,String> snowballName = new HashMap<>();
 
     public void createSnowball(Player player, Location spawnLocation, double speedMultiplier, double gravityLevel, String name, int destructionTime, boolean glowing, int paintLength, Particle trailParticle, boolean ultPoint, int coolDown, int explosionRadius, int explosionDamage, float yawOffset, boolean randomizeYaw) {
-        String color = instance.paintManager.getColorByPlayer(player);
+        String color = instance.paintManager.getColorByPlayer(player,false);
         Snowball snowball;
 
         if (randomizeYaw && yawOffset != 0) {
@@ -79,9 +79,10 @@ public class SnowballManager {
     }
 
     public void explode(Block hit,int radius, Player player, boolean ultPoint, int damage) {
-        String color = instance.paintManager.getColorByPlayer(player);
+        String color = instance.paintManager.getColorByPlayer(player,false);
         int game = instance.gameManager.getGameNumber(player);
         hit.getWorld().playSound(hit.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 0.1f, 3.0f);
+        hit.getWorld().spawnParticle(Particle.FIREWORK, hit.getLocation(), 5, 0, 0, 0, 0.1);
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {

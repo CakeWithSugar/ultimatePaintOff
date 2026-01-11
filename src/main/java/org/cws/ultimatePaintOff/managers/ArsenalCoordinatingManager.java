@@ -1,9 +1,11 @@
 package org.cws.ultimatePaintOff.managers;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffectType;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
@@ -94,8 +96,45 @@ public class ArsenalCoordinatingManager {
         return item;
     }
 
-    public void shootPrimary(Player player, ItemStack item) {
+    public ItemStack getUltInfoItemByWeaponNumber(int weapon) {
+        ItemStack item = null;
+        if (weapon == instance.snap.weaponNumber) {
+            item = instance.arsenalInventory.helixpulser();
+        }
+        if (weapon == instance.snapLight.weaponNumber) {
+            item = instance.arsenalInventory.platzRegen();
+        }
+        if (weapon == instance.nova.weaponNumber) {
+            item = instance.arsenalInventory.sonnenschutz();
+        }
+        if (weapon == instance.novaPuls.weaponNumber) {
+            item = instance.arsenalInventory.fokusBooster();
+        }
+        if (weapon == instance.novaExtend.weaponNumber) {
+            item = instance.arsenalInventory.helixpulser();
+        }
+        if (weapon == instance.triAtler.weaponNumber) {
+            item = instance.arsenalInventory.jettBlaster();
+        }
+        if (weapon == instance.triAtlerExtend.weaponNumber) {
+            item = instance.arsenalInventory.platzRegen();
+        }
+        if (weapon == instance.triAtlerPegasus.weaponNumber) {
+            item = instance.arsenalInventory.sonnenschutz();
+        }
+        if (weapon == instance.snapComplex.weaponNumber) {
+            item = instance.arsenalInventory.krawumKreisel();
+        }
+        if (weapon == instance.akonda.weaponNumber) {
+            item = instance.arsenalInventory.fokusBooster();
+        }
+        if (weapon == instance.akondaExtend.weaponNumber) {
+            item = instance.arsenalInventory.jettBlaster();
+        }
+        return item;
+    }
 
+    public void shootPrimary(Player player, ItemStack item) {
         if (instance.itemManager.isItem(item,Material.CHEST,"Arsenal")) {
             player.openInventory(instance.arsenalInventory.ARSENAL);
             instance.arsenalCoordination.setupArsenalInventory();
@@ -109,7 +148,6 @@ public class ArsenalCoordinatingManager {
         if (player.hasPotionEffect(PotionEffectType.INVISIBILITY) || player.hasPotionEffect(PotionEffectType.WEAKNESS)) {
             return;
         }
-
         // Specials
         if (instance.jettBlaster.inPhase.containsKey(player)) {
             instance.jettBlaster.shoot(player);
@@ -118,33 +156,43 @@ public class ArsenalCoordinatingManager {
         //Primary Weapons
         if (instance.snap.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snap.cost)) {
             instance.snap.shoot(player);
+            return;
         }
         if (instance.snapLight.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snapLight.cost)) {
             instance.snapLight.shoot(player);
+            return;
         }
         if (instance.nova.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.nova.cost)) {
             instance.nova.shoot(player);
+            return;
         }
         if (instance.novaPuls.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.novaPuls.cost)) {
             instance.novaPuls.shoot(player);
+            return;
         }
         if (instance.novaExtend.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.novaExtend.cost)) {
             instance.novaExtend.shoot(player);
+            return;
         }
         if (instance.triAtler.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.triAtler.cost)) {
             instance.triAtler.shoot(player);
+            return;
         }
         if (instance.triAtlerExtend.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.triAtlerExtend.cost)) {
             instance.triAtlerExtend.shoot(player);
+            return;
         }
         if (instance.triAtlerPegasus.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.triAtlerPegasus.cost)) {
             instance.triAtlerPegasus.shoot(player);
+            return;
         }
         if (instance.snapComplex.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.snapComplex.cost)) {
             instance.snapComplex.shoot(player);
+            return;
         }
         if (instance.akonda.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.akonda.cost)) {
             instance.akonda.shoot(player);
+            return;
         }
         if (instance.akondaExtend.isItem(item) && instance.pointsManager.hasEnughFuel(player, instance.akondaExtend.cost)) {
             instance.akondaExtend.shoot(player);
@@ -268,8 +316,12 @@ public class ArsenalCoordinatingManager {
     }
 
     public void castUltimate(Player player) {
+        if (instance.jettBlaster.inPhase.containsKey(player)) {
+            instance.jettBlaster.end(player,true);
+        }
+
         if (instance.selectionManager.weapon.get(player) == instance.snap.weaponNumber) {
-            instance.heliTornedo.cast(player);
+            instance.helixpulser.cast(player);
         }
         if (instance.selectionManager.weapon.get(player) == instance.snapLight.weaponNumber) {
             instance.platzRegen.cast(player);
@@ -281,7 +333,7 @@ public class ArsenalCoordinatingManager {
             instance.fokusBooster.cast(player);
         }
         if (instance.selectionManager.weapon.get(player) == instance.novaExtend.weaponNumber) {
-            instance.heliTornedo.cast(player);
+            instance.helixpulser.cast(player);
         }
         if (instance.selectionManager.weapon.get(player) == instance.triAtler.weaponNumber) {
             instance.jettBlaster.cast(player);
@@ -300,6 +352,37 @@ public class ArsenalCoordinatingManager {
         }
         if (instance.selectionManager.weapon.get(player) == instance.akondaExtend.weaponNumber) {
             instance.jettBlaster.cast(player);
+        }
+    }
+
+    public void dressUp(Player player, boolean clear) {
+        if (!clear && player.getInventory().getChestplate().isEmpty()) {
+            String color = instance.paintManager.getColorByPlayer(player,false);
+            ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+            LeatherArmorMeta meta = (LeatherArmorMeta) chestplate.getItemMeta();
+
+            // Set color based on team
+            switch (color) {
+                case "RED" -> meta.setColor(Color.RED);
+                case "BLUE" -> meta.setColor(Color.BLUE);
+                case "GREEN" -> meta.setColor(Color.GREEN);
+                case "YELLOW" -> meta.setColor(Color.YELLOW);
+                case "PURPLE" -> meta.setColor(Color.PURPLE);
+                case "MAGENTA" -> meta.setColor(Color.FUCHSIA);
+                case "ORANGE" -> meta.setColor(Color.ORANGE);
+                case "GRAY" -> meta.setColor(Color.GRAY);
+                case "BLACK" -> meta.setColor(Color.BLACK);
+                case "WHITE" -> meta.setColor(Color.WHITE);
+                case "LIME" -> meta.setColor(Color.LIME);
+                case "CYAN" -> meta.setColor(Color.TEAL);
+                case "LIGHT_BLUE" -> meta.setColor(Color.AQUA);
+            }
+            chestplate.setItemMeta(meta);
+            player.getInventory().setChestplate(chestplate);
+            player.getInventory().setHelmet(ItemStack.of(Material.valueOf(color + "_STAINED_GLASS")));
+        } else if (clear){
+            player.getInventory().setChestplate(null);
+            player.getInventory().setHelmet(null);
         }
     }
 }

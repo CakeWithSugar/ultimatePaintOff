@@ -8,22 +8,22 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class TriAtlerExtend {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Tri-Atler Extend";
-    public final String classification = "Painting/Pressuring";
+    public final String classification = "⭐⭐☆☆☆";
     public final String ultimateName = instance.platzRegen.name;
     public final Material material = Material.BOW;
     public final int weaponNumber = 7;
-    public final int cost = 10;
+    public final int cost = 16;
     public final int costSecondary = cost*3;
 
-    public final int ultPoints = 260;
-    public final int damage = 2;
+    public final int ultPoints = 300;
+    public final int damage = 1;
     public final int explosionDamage = 0;
 
-    private final double speedMultiplier = 1.5;
+    private final double speedMultiplier = 1.75;
     private final double gravityLevel = 0.15;
     private final int destructionTime = 0;
-    private final int paintLength = 1;
-    private final int coolDown = 5;
+    private final int paintLength = 2;
+    private final int coolDown = 10;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
     private final float yawOffset = 10f;

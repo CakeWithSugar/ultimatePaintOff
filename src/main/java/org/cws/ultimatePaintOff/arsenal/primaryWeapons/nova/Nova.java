@@ -8,13 +8,13 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class Nova {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Nova";
-    public final String classification = "Controlling";
+    public final String difficulty = "⭐⭐☆☆☆";
     public final String ultimateName = instance.sonnenschutz.name;
     public final Material material = Material.COPPER_PICKAXE;
     public final int weaponNumber = 3;
-    public final int cost = 16;
-    public final int ultPoints = 310;
-    public final int damage = 4;
+    public final int cost = 12;
+    public final int ultPoints = 300;
+    public final int damage = 2;
     public final int explosionDamage = 2;
 
     private final double speedMultiplier = 1.75;
@@ -28,7 +28,7 @@ public class Nova {
     private final boolean randomizeYaw = false;
 
     public ItemStack item() {
-        return instance.itemManager.createWeapon(material,name,classification,ultPoints,ultimateName,speedMultiplier,gravityLevel,damage,paintLength,cost,coolDown,destructionTime,explosionRadius,explosionDamage,yawOffset,null);
+        return instance.itemManager.createWeapon(material,name,difficulty,ultPoints,ultimateName,speedMultiplier,gravityLevel,damage,paintLength,cost,coolDown,destructionTime,explosionRadius,explosionDamage,yawOffset,null);
     }
 
     public ItemStack gameItem() {

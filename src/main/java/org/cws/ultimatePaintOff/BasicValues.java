@@ -10,8 +10,8 @@ public class BasicValues {
     public final int maxQueues = 10;
     public final int maxQueueSize = 8;
 
-    public final int minQueueSize = 2;
-    public final int countDown = 5;
+    public final int minQueueSize = 3;
+    public final int countDown = 10;
 
     public final int spawnHight = 64;
 

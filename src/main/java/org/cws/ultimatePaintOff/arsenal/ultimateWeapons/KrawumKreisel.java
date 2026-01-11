@@ -42,7 +42,7 @@ public class KrawumKreisel {
         direction.setX(0);
         direction.setZ(0);
         snowballChild.setVelocity(direction);
-        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player,false)) + name);
         snowballChild.customName(customName);
         snowballChild.setCustomNameVisible(true);
         snowballChild.setGravity(false);
@@ -55,7 +55,7 @@ public class KrawumKreisel {
             if (snowballChild.isDead() || !snowballChild.isValid()) {
                 return;
             }
-            instance.paintManager.playColorParticle(instance.paintManager.getColorByPlayer(player),snowballChild.getLocation(),1,1,1,2f);
+            instance.paintManager.playColorParticle(instance.paintManager.getColorByPlayer(player,false),snowballChild.getLocation(),1,1,1,2f);
             snowballChild.getWorld().spawnParticle(Particle.CRIMSON_SPORE, snowballChild.getLocation(), 10, 0, 0, 0, 0.1);
             instance.snowballManager.createSnowball(player,snowballChild.getLocation(), 0.5,0.1,nameChild,40,false,5,Particle.ELECTRIC_SPARK,false,0,1,6,360,true);
         }, 0, 2);

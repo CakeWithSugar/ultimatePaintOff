@@ -8,13 +8,13 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class AkondaExtend {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Akonda Extend";
-    public final String classification = "Controlling";
+    public final String classification = "⭐⭐⭐☆☆";
     public final String ultimateName = instance.jettBlaster.name;
     public final Material material = Material.GOLDEN_SHOVEL;
     public final int weaponNumber = 11;
     public final int cost = 12;
     public final int ultPoints = 300;
-    public final int damage = 3;
+    public final int damage = 1;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 2.25;

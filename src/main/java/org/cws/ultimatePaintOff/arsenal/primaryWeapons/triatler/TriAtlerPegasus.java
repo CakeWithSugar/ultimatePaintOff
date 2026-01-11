@@ -8,7 +8,7 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class TriAtlerPegasus {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Tri-Atler Pegasus";
-    public final String classification = "Painting/Supporting";
+    public final String classification = "⭐⭐⭐☆☆";
     public final String ultimateName = instance.sonnenschutz.name;
     public final Material material = Material.BOW;
     public final int weaponNumber = 8;
@@ -16,13 +16,13 @@ public class TriAtlerPegasus {
     public final int costSecondary = cost*3;
 
     public final int ultPoints = 300;
-    public final int damage = 3;
+    public final int damage = 1;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 1.5;
     private final double gravityLevel = 0;
     private final int destructionTime = 5;
-    private final int paintLength = 1;
+    private final int paintLength = 2;
     private final int coolDown = 5;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
@@ -51,8 +51,8 @@ public class TriAtlerPegasus {
 
     public void shootSecondary(Player player) {
         instance.pointsManager.fuel.put(player, instance.pointsManager.fuel.get(player) - costSecondary);
-        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.5,gravityLevel/3,name,destructionTime*2,glowing,paintLength,null,true,coolDown+10,explosionRadius,explosionDamage,0,randomizeYaw);
-        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.25,gravityLevel/3,name,destructionTime*2,glowing,paintLength,null,true,coolDown+10,explosionRadius,explosionDamage,yawOffset/6,randomizeYaw);
-        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.25,gravityLevel/3,name,destructionTime*2,glowing,paintLength,null,true,coolDown+10,explosionRadius,explosionDamage,yawOffsetTwo/6,randomizeYaw);
+        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.5,gravityLevel/3,name,destructionTime*2,glowing,paintLength-1,null,true,coolDown+10,explosionRadius,explosionDamage,0,randomizeYaw);
+        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.25,gravityLevel/3,name,destructionTime*2,glowing,paintLength-1,null,true,coolDown+10,explosionRadius,explosionDamage,yawOffset/6,randomizeYaw);
+        instance.snowballManager.createSnowball(player,null,speedMultiplier+0.25,gravityLevel/3,name,destructionTime*2,glowing,paintLength-1,null,true,coolDown+10,explosionRadius,explosionDamage,yawOffsetTwo/6,randomizeYaw);
     }
 }

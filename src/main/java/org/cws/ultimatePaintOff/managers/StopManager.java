@@ -39,6 +39,7 @@ public class StopManager {
         }
 
         instance.gameManager.game.get(queue).clear();
+        instance.paintManager.deleteTeams(queue);
         instance.gameManager.teamA.get(queue).clear();
         instance.gameManager.teamB.get(queue).clear();
         instance.gameManager.arenaName[queue] = null;

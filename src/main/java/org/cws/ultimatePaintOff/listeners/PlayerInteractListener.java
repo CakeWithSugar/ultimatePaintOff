@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 import org.bukkit.event.block.Action;
@@ -23,7 +24,14 @@ public class PlayerInteractListener implements Listener {
             if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
                 event.setCancelled(true);
                 ItemStack item = event.getItem();
+                int slot = player.getInventory().getHeldItemSlot();
+                if (slot == 8) {
+                    instance.inGameMenu.setupInfoInventory();
+                    player.openInventory(instance.inGameMenu.menu);
+                    return;
+                }
                 instance.arsenalCoordination.shootPrimary(player,item);
+                return;
             }
             if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
                 event.setCancelled(true);

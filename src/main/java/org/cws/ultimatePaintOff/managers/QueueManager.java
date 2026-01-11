@@ -83,9 +83,9 @@ public class QueueManager {
             if (i.get() != 0) {
                 for (Player p : instance.queueManager.queued.get(queue)) {
                     p.sendTitle("§a§l" + i, "", 10, 40, 40);
-                    i.addAndGet(-1);
                     checkEmpty(queue);
                 }
+                i.addAndGet(-1);
             } else {
                 instance.gameManager.startGame(queue,arenaName);
                 cancelTask(queue);

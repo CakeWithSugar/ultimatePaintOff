@@ -16,8 +16,10 @@ public class InventoryManager {
             instance.messageManager.sendInfo(player, "No weapon chosen, defaulting to pistol!");
             instance.selectionManager.weapon.put(player, instance.snap.weaponNumber);
         }
-        int weapon = instance.selectionManager.weapon.get(player);
-        ItemStack item = instance.arsenalCoordination.getPrimaryItemByWeaponNumber(weapon);
-        player.getInventory().setItem(1,item);
+        int number = instance.selectionManager.weapon.get(player);
+        ItemStack weapon = instance.arsenalCoordination.getPrimaryItemByWeaponNumber(number);
+        player.getInventory().setItem(1,weapon);
+        ItemStack ult = instance.arsenalCoordination.getUltInfoItemByWeaponNumber(number);
+        player.getInventory().setItem(8,ult);
     }
 }

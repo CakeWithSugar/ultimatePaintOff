@@ -25,7 +25,7 @@ public class ArsenalInventory {
     }
 
     public void setupInfoInventory() {
-        INFO.setItem(1, heliTornedo());
+        INFO.setItem(1, helixpulser());
         INFO.setItem(2, platzRegen());
         INFO.setItem(3, sonnenschutz());
         INFO.setItem(4, jettBlaster());
@@ -34,16 +34,16 @@ public class ArsenalInventory {
         INFO.setItem(7, non());
     }
 
-    public ItemStack heliTornedo() {
+    public ItemStack helixpulser() {
         ItemStack item = new ItemStack(Material.FIREWORK_ROCKET);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName("§6"+ instance.heliTornedo.name);
+            meta.setDisplayName("§6"+ instance.helixpulser.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Feuert einen §3"+ instance.heliTornedo.helixRadius +"§7 breiten Strahl aus Farbe in die §eBlickrichtung§7.");
-            lore.add("§7Der Strahl läd sich §3" + instance.heliTornedo.prepTime + "§7 Sekunden auf,");
-            lore.add("§7bevor er §3" + instance.heliTornedo.time + "§7 Sekunden gegner in ihm §eerledigt");
-            lore.add("§7und Blöcke §eeinfärbt§7.");
+            lore.add("§7Feuert einen §3" + instance.helixpulser.helixRadius + " §7Blöcke breiten Farbstrahl in §edie Blickrichtung§7.");
+            lore.add("§7Der Strahl lädt sich §3" + instance.helixpulser.prepTime + " §7Sekunden lang auf,");
+            lore.add("§7bevor er §3" + instance.helixpulser.time + " §7Sekunden lang Gegner in ihm §eerledigt");
+            lore.add("§7und Blöcke §7§eeinfärbt§7.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
@@ -59,8 +59,8 @@ public class ArsenalInventory {
             lore.add("§7Feuert eine Wolke aus Farbe in die §eBlickrichtung§7.");
             lore.add("§7Die Wolke §efliegt§7 in die Luft und schwebt für §3" + instance.platzRegen.duration + "§7 Sekunden");
             lore.add("§7in die §egleiche Richtung§7.");
-            lore.add("§7Dabei tropfen Farbkugeln runter, welche Blöcke §eeinfärben§7");
-            lore.add("§7und gegnern §3" + instance.platzRegen.damage + "§7 Schaden zufügen.");
+            lore.add("§7Dabei tropfen Farbkugeln herab, die Blöcke §eeinfärben");
+            lore.add("§7und Gegnern §3" + instance.platzRegen.damage + "§7 Schaden zufügen.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
@@ -73,11 +73,11 @@ public class ArsenalInventory {
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.sonnenschutz.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Läst eine Sonne §eüber dem Spieler§7 erscheinen,");
-            lore.add("§7Welche sich langsam §edem boden nähert§7.");
-            lore.add("§7Auf dem Boden entsteht eine §eSchutzzohne§7,");
-            lore.add("§7welche sich um §3" + instance.sonnenschutz.abnahme + "§7 alle §e0.5§7 Sekunden verkleinert");
-            lore.add("§7und anderen Teammitgliedern in der Zone §eResistenz§7 gibt.");
+            lore.add("§7Lässt eine Sonne §eüber dem Spieler§7 erscheinen,");
+            lore.add("§7welche sich langsam §edem Boden nähert§7.");
+            lore.add("§7Auf dem Boden entsteht eine §eSchutzzone§7,");
+            lore.add("§7welche sich alle §e0.5§7 Sekunden um §3" + instance.sonnenschutz.abnahme + "§7 verkleinert");
+            lore.add("§7und anderen Teammitgliedern in der Zone §eResistenz§7 verleiht.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
@@ -90,14 +90,16 @@ public class ArsenalInventory {
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.jettBlaster.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Läst den Spieler für §3" + instance.jettBlaster.duration + "§7 Sekunden §3" + instance.jettBlaster.hight + "§7 Blöcke hoch fliegen.");
+            lore.add("§7Lässt den Spieler für §3" + instance.jettBlaster.duration + "§7 Sekunden §3" + instance.jettBlaster.hight + "§7 Blöcke hoch fliegen.");
             lore.add("§7Währenddessen §egleitet§7 der Spieler in die §eBlickrichtung§7.");
-            lore.add("§7Wird während des §egleitens§7 geschossen werden §eBlasterkugeln§7 geschossen.");
-            lore.add("§7Bei aufprall §eexplodieren§7 sie, §efärben§7 ein und verursachen §3" + instance.jettBlaster.damage + "§7 Explosionsschaden.");
+            lore.add("§7Während des §eGleitens§7 werden §eBlasterkugeln§7 abgefeuert,");
+            lore.add("§7die bei Aufprall §eexplodieren§7, Blöcke §eeinfärben");
+            lore.add("§7und §3" + instance.jettBlaster.damage + "§7 Explosionsschaden verursachen.");
             lore.add("§7Nach Ablauf der Zeit wird der Spieler zurück zu seiner Ausgangsposition §eteleportiert§7.");
             lore.add("");
-            lore.add("§7Durch §e[SHIFT]§7 kann der flug unterbrochen werden.");
-            lore.add("§7Fähigkeit geht bei §eeleminierung§7 verloren.");
+            lore.add("§7Durch §e[SHIFT]§7 kann der Flug §eunterbrochen§7 werden.");
+            lore.add("§7Durch §e[Q]§7 kann der Flug §esofort beendet§7 werden.");
+            lore.add("§7Die Fähigkeit geht bei §eEliminierung§7 verloren.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
@@ -110,10 +112,10 @@ public class ArsenalInventory {
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.fokusBooster.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Jeder Spieler im §eTeam§7 erhält für §3"+ instance.fokusBooster.duration +" §7Sekunden §3+"+ instance.fokusBooster.regenBoost +" §eFarbregeneration§7 und");
-            lore.add("§7jeder §everursachte Schaden§7 wird um §3+"+ instance.fokusBooster.damageBoost +" §7gesteigert.");
-            lore.add("§7Kugeln §emakieren§7 für §3"+ instance.fokusBooster.markSeconds +"§7 Sekunden den Gegner, wenn sie treffen.");
-            lore.add("§7Während der dauer können keine §eUltpunkte§7 erhalten werden.");
+            lore.add("§7Jeder Spieler im §eTeam§7 erhält für §3" + instance.fokusBooster.duration + "§7 Sekunden §3+" + instance.fokusBooster.regenBoost + " §eFarbregeneration§7,");
+            lore.add("§7und jeder §everursachte Schaden§7 wird um §3+" + instance.fokusBooster.damageBoost + " §7erhöht.");
+            lore.add("§7Getroffene Gegner werden für §3" + instance.fokusBooster.markSeconds + "§7 Sekunden §emarkiert§7.");
+            lore.add("§7Während der Dauer können keine §eUltimativ-Punkte§7 erhalten werden.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }
@@ -129,9 +131,9 @@ public class ArsenalInventory {
             lore.add("§7Feuert einen Kreisel aus Farbe in die §eBlickrichtung§7.");
             lore.add("§7Der Kreisel §efliegt§7 in die Luft und schwebt für §3" + instance.krawumKreisel.duration + "§7 Sekunden");
             lore.add("§7nach §eoben§7.");
-            lore.add("§7Dabei schießt er §eFarbkugeln §7in §ezufällige Richtungen§7, welche");
-            lore.add("§7bei aufprall §eexplodieren§7, Blöcke §eeinfärben §7und gegnern");
-            lore.add("§3" + instance.krawumKreisel.damage + "§7 Explosionsschaden zufügen.");
+            lore.add("§7Dabei schießt er §eFarbkugeln§7 in §ezufällige Richtungen§7, die");
+            lore.add("§7beim Aufprall §eexplodieren§7, Blöcke §eeinfärben");
+            lore.add("§7und Gegnern §3" + instance.krawumKreisel.damage + "§7 Explosionsschaden zufügen.");
             meta.setLore(lore);
             item.setItemMeta(meta);
         }

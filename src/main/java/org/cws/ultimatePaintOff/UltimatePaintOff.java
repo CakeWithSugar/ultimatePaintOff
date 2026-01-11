@@ -17,6 +17,7 @@ import org.cws.ultimatePaintOff.arsenal.ultimateWeapons.*;
 import org.cws.ultimatePaintOff.executors.*;
 import org.cws.ultimatePaintOff.listeners.*;
 import org.cws.ultimatePaintOff.listsAndInventories.ArsenalInventory;
+import org.cws.ultimatePaintOff.listsAndInventories.InGameMenu;
 import org.cws.ultimatePaintOff.listsAndInventories.VoteInventory;
 import org.cws.ultimatePaintOff.managers.*;
 
@@ -38,9 +39,11 @@ public final class UltimatePaintOff extends JavaPlugin {
     public StopManager stopManager;
     public PointsManager pointsManager;
     public DamageManager damageManager;
+    public ScoreManager scoreManager;
     public ArsenalCoordinatingManager arsenalCoordination;
 
     public ArsenalInventory arsenalInventory;
+    public InGameMenu inGameMenu;
     public VoteInventory voteInventory;
 
     public Snap snap;
@@ -55,7 +58,7 @@ public final class UltimatePaintOff extends JavaPlugin {
     public Akonda akonda;
     public AkondaExtend akondaExtend;
 
-    public HeliTornedo heliTornedo;
+    public Helixpulser helixpulser;
     public PlatzRegen platzRegen;
     public Sonnenschutz sonnenschutz;
     public JettBlaster jettBlaster;
@@ -97,7 +100,7 @@ public final class UltimatePaintOff extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
-        getServer().getPluginManager().registerEvents(new onPlayerToggleSneakListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerToggleSneakListener(), this);
         getServer().getPluginManager().registerEvents(new ProjectileHitListener(), this);
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
     }
@@ -116,12 +119,14 @@ public final class UltimatePaintOff extends JavaPlugin {
         this.pointsManager = new PointsManager();
         this.damageManager = new DamageManager();
         this.arsenalCoordination = new ArsenalCoordinatingManager();
+        this.scoreManager = new ScoreManager();
     }
 
     private void registerListsAndInventories() {
         this.arsenalInventory = new ArsenalInventory();
         this.voteInventory = new VoteInventory();
         this.basicValues = new BasicValues();
+        this.inGameMenu = new InGameMenu();
     }
 
     private void registerWeapons() {
@@ -139,7 +144,7 @@ public final class UltimatePaintOff extends JavaPlugin {
     }
 
     private void registerUlts() {
-        this.heliTornedo = new HeliTornedo();
+        this.helixpulser = new Helixpulser();
         this.platzRegen = new PlatzRegen();
         this.sonnenschutz = new Sonnenschutz();
         this.jettBlaster = new JettBlaster();

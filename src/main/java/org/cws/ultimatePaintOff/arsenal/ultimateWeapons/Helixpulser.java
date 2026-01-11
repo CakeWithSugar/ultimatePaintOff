@@ -13,22 +13,23 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class HeliTornedo {
+public class Helixpulser {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Helixpulser";
     private final int beamLength = 200;
-    public final double helixRadius = 2.5;
+    public final double helixRadius = 3.0;
     private final double helixFrequency = 0.5;
     public final int prepTime = 2;
     public final int time = 6;
     private final double prepParticleWidth = 0.75;
-    private final double timeParticleWidth = 0.4;
+    private final double timeParticleWidth = 0.5;
     private final int damage = 5;
 
     public void cast(Player player) {
         if (instance.pointsManager.hasEnughUltPoints(player)) {
             launch(player);
             player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 1.0f, 2.0f);
+            player.getWorld().playSound(player.getLocation(), Sound.BLOCK_BELL_RESONATE, 0.75f, 0.75f);
             instance.messageManager.sendUltMessage(player,name);
             instance.pointsManager.ultPoint.put(player, 0);
         }
@@ -42,7 +43,7 @@ public class HeliTornedo {
         Snowball snowballChild = startLoc.getWorld().spawn(startLoc, Snowball.class);
         Vector drc = new Vector(0,0,0);
         snowballChild.setVelocity(drc);
-        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player)) + name);
+        Component customName = Component.text(instance.paintManager.getColorCode(instance.paintManager.getColorByPlayer(player,false)) + name);
         snowballChild.customName(customName);
         snowballChild.setVisibleByDefault(false);
         snowballChild.setGravity(false);
@@ -53,7 +54,7 @@ public class HeliTornedo {
 
         AtomicBoolean stop = new AtomicBoolean(false);
         AtomicBoolean prep = new AtomicBoolean(false);
-        String colorName = instance.paintManager.getColorByPlayer(player);
+        String colorName = instance.paintManager.getColorByPlayer(player,false);
 
         final int[] rotationCounter = {0};
 
@@ -125,6 +126,7 @@ public class HeliTornedo {
                     // First helix particle
                     Location beamLoc1 = beamLoc.clone().add(offsetX1, offsetY1, offsetZ1);
                     instance.paintManager.playColorParticle(colorName, beamLoc1, 0.05, 1, 0.05, 1.25f);
+                    beamLoc1.getWorld().playSound(beamLoc1, Sound.BLOCK_BEEHIVE_WORK, 0.25f, 1.0f);
                     AtomicReference<Block> block1 = new AtomicReference<>(beamLoc1.getBlock());
                     if (!block1.get().getType().isAir()) {
                         instance.paintManager.setBlock(block1.get().getLocation(), colorName, player, false);
@@ -133,6 +135,7 @@ public class HeliTornedo {
                     // Second helix particle
                     Location beamLoc2 = beamLoc.clone().add(offsetX2, offsetY2, offsetZ2);
                     instance.paintManager.playColorParticle(colorName, beamLoc2, 0.05, 1, 0.05, 1.25f);
+                    beamLoc2.getWorld().playSound(beamLoc2, Sound.BLOCK_BEEHIVE_WORK, 0.25f, 1.0f);
                     AtomicReference<Block> block2 = new AtomicReference<>(beamLoc2.getBlock());
                     if (!block2.get().getType().isAir()) {
                         instance.paintManager.setBlock(block2.get().getLocation(), colorName, player, false);

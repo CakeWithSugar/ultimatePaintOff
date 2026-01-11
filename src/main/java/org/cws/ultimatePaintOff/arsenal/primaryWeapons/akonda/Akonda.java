@@ -8,13 +8,13 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class Akonda {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Akonda";
-    public final String classification = "Painting";
+    public final String classification = "⭐⭐☆☆☆";
     public final String ultimateName = instance.fokusBooster.name;
     public final Material material = Material.IRON_SHOVEL;
     public final int weaponNumber = 10;
     public final int cost = 8;
-    public final int ultPoints = 320;
-    public final int damage = 4;
+    public final int ultPoints = 280;
+    public final int damage = 2;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 2.0;

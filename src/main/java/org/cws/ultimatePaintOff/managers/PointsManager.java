@@ -24,8 +24,9 @@ public class PointsManager {
         fuelTimer[queue] = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, () -> {
             for (Player player : instance.gameManager.game.get(queue)) {
                 fuelAmount(player, 2);
+                instance.scoreManager.updateScore(player);
                 if (player.hasPotionEffect(PotionEffectType.INVISIBILITY)) {
-                    fuelAmount(player, 12);
+                    fuelAmount(player, 20);
                 }
                 if (player.hasPotionEffect(PotionEffectType.STRENGTH)) {
                     fuelAmount(player, instance.fokusBooster.regenBoost);

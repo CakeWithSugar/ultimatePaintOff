@@ -8,31 +8,31 @@ import org.cws.ultimatePaintOff.UltimatePaintOff;
 public class TriAtler {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
     public final String name = "Tri-Atler";
-    public final String classification = "Painting/Atacking";
+    public final String difficulty = "⭐⭐⭐☆☆";
     public final String ultimateName = instance.jettBlaster.name;
     public final Material material = Material.BOW;
     public final int weaponNumber = 6;
-    public final int cost = 8;
+    public final int cost = 12;
     public final int costSecondary = cost*3;
 
-    public final int ultPoints = 280;
-    public final int damage = 4;
+    public final int ultPoints = 320;
+    public final int damage = 2;
     public final int explosionDamage = 0;
 
     private final double speedMultiplier = 1.25;
     private final double gravityLevel = 0.15;
     private final int destructionTime = 0;
-    private final int paintLength = 1;
+    private final int paintLength = 2;
     private final int coolDown = 5;
     private final int explosionRadius = 0;
     private final boolean glowing = false;
-    private final float yawOffset = 20f;
-    private final float yawOffsetTwo = -20f;
+    private final float yawOffset = 15f;
+    private final float yawOffsetTwo = -15f;
     private final String secondaryAbility = "Longshot";
     private final boolean randomizeYaw = false;
 
     public ItemStack item() {
-        return instance.itemManager.createWeapon(material,name,classification,ultPoints,ultimateName,speedMultiplier,gravityLevel,damage,paintLength,cost,coolDown,destructionTime,explosionRadius,explosionDamage,yawOffset,secondaryAbility);
+        return instance.itemManager.createWeapon(material,name, difficulty,ultPoints,ultimateName,speedMultiplier,gravityLevel,damage,paintLength,cost,coolDown,destructionTime,explosionRadius,explosionDamage,yawOffset,secondaryAbility);
     }
 
     public ItemStack gameItem() {
