@@ -9,10 +9,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.cws.ultimatePaintOff.UltimatePaintOff;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class ArenaManager {
     UltimatePaintOff instance = UltimatePaintOff.getInstance();
@@ -105,9 +102,9 @@ public class ArenaManager {
         }
         File file = new File(arenaFolder, "arena.dat");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(String.format("%d,%d,%d,%d,%d,%d",
-                    playerPos.getBlockX(), playerPos.getBlockY(), playerPos.getBlockZ(),
-                    spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ()));
+            writer.write(String.format(Locale.US, "%.2f,%.2f,%d,%d,%d", playerPos.getYaw(), playerPos.getPitch(), playerPos.getBlockX(), playerPos.getBlockY(), playerPos.getBlockZ()));
+            writer.newLine();
+            writer.write(String.format(Locale.US, "%.2f,%.2f,%d,%d,%d", spawn.getYaw(), spawn.getPitch(), spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ()));
             writer.newLine();
 
             int minX = Math.min(pos1.getBlockX(), pos2.getBlockX());
@@ -116,9 +113,6 @@ public class ArenaManager {
             int maxX = Math.max(pos1.getBlockX(), pos2.getBlockX());
             int maxY = Math.max(pos1.getBlockY(), pos2.getBlockY());
             int maxZ = Math.max(pos1.getBlockZ(), pos2.getBlockZ());
-
-            writer.write(String.format("%d,%d,%d,%d,%d,%d", minX, minY, minZ, maxX, maxY, maxZ));
-            writer.newLine();
 
             for (int x = minX; x <= maxX; x++) {
                 for (int y = minY; y <= maxY; y++) {
@@ -157,27 +151,17 @@ public class ArenaManager {
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String firstLine = reader.readLine();
-            if (firstLine == null) {
-                instance.messageManager.sendError(null, "Arena-File is empty!");
-                return;
-            }
+            reader.readLine();
 
-            String[] originalPos = firstLine.split(",");
-            if (originalPos.length != 6) {
+            String[] originalPos = reader.readLine().split(",");
+            if (originalPos.length < 5) {
                 instance.messageManager.sendError(null, "Invalid position format!");
                 return;
             }
 
-            int originalX = Integer.parseInt(originalPos[0]);
-            int originalY = Integer.parseInt(originalPos[1]);
-            int originalZ = Integer.parseInt(originalPos[2]);
-
-            String boundsLine = reader.readLine();
-            if (boundsLine == null) {
-                instance.messageManager.sendError(null, "Bounds data not found!");
-                return;
-            }
+            int originalX = Integer.parseInt(originalPos[2]);
+            int originalY = Integer.parseInt(originalPos[3]);
+            int originalZ = Integer.parseInt(originalPos[4]);
 
             // Get Po1 world
             World world = Bukkit.getWorld("Po"+queue);
@@ -382,7 +366,7 @@ public class ArenaManager {
         return arenas;
     }
 
-    public void portToArena(Player player,String arenaName) {
+    public void portToArena(Player player, String arenaName) {
         int game = instance.gameManager.getGameNumber(player);
         File arenaFile = new File("PO-arenas/", arenaName + "/arena.dat");
 
@@ -392,51 +376,67 @@ public class ArenaManager {
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(arenaFile))) {
-            String firstLine = reader.readLine();
-            if (firstLine == null) {
+            // Read player position (first line)
+            String playerPosLine = reader.readLine();
+            if (playerPosLine == null) {
                 instance.messageManager.sendError(player,"Arena: " + arenaName + " not found! (File is empty)");
                 return;
             }
 
-            String[] positions = firstLine.split(",");
-            if (positions.length != 6) {
-                instance.messageManager.sendError(player,"Arena: " + arenaName + " not found! (Invalid file format)");
+            // Read spawn position (second line)
+            String spawnPosLine = reader.readLine();
+            if (spawnPosLine == null) {
+                instance.messageManager.sendError(player,"Arena: " + arenaName + " is missing spawn position data");
                 return;
             }
 
-            // Parse coordinates
-            int x1 = Integer.parseInt(positions[0]);
-            int y1 = Integer.parseInt(positions[1]);
-            int z1 = Integer.parseInt(positions[2]);
-            int x2 = Integer.parseInt(positions[3]);
-            int y2 = Integer.parseInt(positions[4]);
-            int z2 = Integer.parseInt(positions[5]);
+            String[] playerPos = playerPosLine.split(",");
+            String[] spawnPos = spawnPosLine.split(",");
 
+            if (playerPos.length != 5 || spawnPos.length != 5) {
+                instance.messageManager.sendError(player,"Arena: " + arenaName + " has invalid data format");
+                return;
+            }
+
+            // Parse player position with yaw and pitch
+            float yaw = Float.parseFloat(playerPos[0]);
+            float pitch = Float.parseFloat(playerPos[1]);
+            int x1 = Integer.parseInt(playerPos[2]);
+            int y1 = Integer.parseInt(playerPos[3]);
+            int z1 = Integer.parseInt(playerPos[4]);
+
+            // Parse spawn position with yaw and pitch
+            float spawnYaw = Float.parseFloat(spawnPos[0]);
+            float spawnPitch = Float.parseFloat(spawnPos[1]);
+            int x2 = Integer.parseInt(spawnPos[2]);
+            int y2 = Integer.parseInt(spawnPos[3]);
+            int z2 = Integer.parseInt(spawnPos[4]);
+
+            // Get the world
             World world = Bukkit.getWorld("Po" + game);
             if (world == null) {
-                instance.messageManager.sendError(player, "World: Po" + game + " not found!");
+                instance.messageManager.sendError(player, "World not found! (Po" + game + ")");
                 return;
             }
 
-            // Teleport based on team
-            if (instance.gameManager.teamA.get(game).contains(player)) {
-                // Team A uses first position
-                Location spawnA = new Location(world, 0, instance.basicValues.spawnHight, 0);
+            if (instance.gameManager.teamB.get(game).contains(player)) {
+                Location spawnA = new Location(world, 0, instance.basicValues.spawnHight, 0,yaw+180,pitch);
                 player.teleport(spawnA);
             }
-            if (instance.gameManager.teamB.get(game).contains(player)) {
-                int deltaX = x2 - x1;
-                int deltaY = y2 - y1;
-                int deltaZ = z2 - z1;
-
-                Location spawnB = new Location(world, deltaX, deltaY + instance.basicValues.spawnHight, deltaZ);
+            if (instance.gameManager.teamA.get(game).contains(player)) {
+                int deltaX = x1 - x2;
+                int deltaY = y1 - y2;
+                int deltaZ = z1 - z2;
+                Location spawnB = new Location(world, deltaX, deltaY + instance.basicValues.spawnHight, deltaZ,spawnYaw+180,spawnPitch);
                 player.teleport(spawnB);
             }
+
             player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20 * resistanceTime, 1));
         } catch (IOException | NumberFormatException e) {
-            instance.messageManager.sendError(player,"Error while Teleporting.");
-            instance.queueManager.leaveQueue(player,false);
+            instance.messageManager.sendError(player,"Error while teleporting to arena");
+            instance.queueManager.leaveQueue(player, false);
             instance.messageManager.sendError(null,"Error while porting to arena: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

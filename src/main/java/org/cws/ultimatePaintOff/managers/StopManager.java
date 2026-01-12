@@ -66,15 +66,17 @@ public class StopManager {
         int dirtCount = 0;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(blocksFile))) {
-            String firstLine = reader.readLine();
-            if (firstLine == null) {
+            reader.readLine();
+            String secondLine = reader.readLine();
+            if (secondLine == null) {
                 instance.messageManager.sendError(null, "Ungültige Arena-Datei!" + arenaName);
                 return dirtCount;
             }
-            String[] referencePos = firstLine.split(",");
-            int refX = Integer.parseInt(referencePos[0]);
-            int refY = Integer.parseInt(referencePos[1]);
-            int refZ = Integer.parseInt(referencePos[2]);
+
+            String[] referencePos = secondLine.split(",");
+            int refX = Integer.parseInt(referencePos[2]);
+            int refY = Integer.parseInt(referencePos[3]);
+            int refZ = Integer.parseInt(referencePos[4]);
 
             String line;
             while ((line = reader.readLine()) != null) {

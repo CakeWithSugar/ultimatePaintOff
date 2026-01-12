@@ -24,7 +24,7 @@ public class ScoreManager {
 
         int teamPainted = instance.paintManager.teamPainted.get(instance.gameManager.teamOfPlayer(player,false));
         int enemyPainted;
-        if (instance.paintManager.teamPainted.get(instance.gameManager.teamOfPlayer(player,true)) == null) {
+        if (instance.paintManager.teamPainted.get(instance.gameManager.teamOfPlayer(player,true)) != null) {
             enemyPainted = instance.paintManager.teamPainted.get(instance.gameManager.teamOfPlayer(player,true));
         } else {
             enemyPainted = 0;

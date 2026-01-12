@@ -235,7 +235,14 @@ public class GameManager {
     }
 
     public List<Player> teamOfPlayer(Player player,boolean enemy) {
-        if (teamA.get(getGameNumber(player)).contains(player) && !enemy) {
+        if (enemy) {
+            if (teamA.get(getGameNumber(player)).contains(player)) {
+                return teamB.get(getGameNumber(player));
+            } else {
+                return teamA.get(getGameNumber(player));
+            }
+        }
+        if (teamA.get(getGameNumber(player)).contains(player)) {
             return teamA.get(getGameNumber(player));
         } else {
             return teamB.get(getGameNumber(player));
