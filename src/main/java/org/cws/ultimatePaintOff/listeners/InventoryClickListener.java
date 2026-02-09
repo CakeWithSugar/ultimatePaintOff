@@ -56,6 +56,7 @@ public class InventoryClickListener implements Listener {
             int clicked = event.getSlot();
             if (clicked == 8) {
                 player.openInventory(instance.arsenalInventory.ARSENAL);
+                instance.arsenalCoordination.setupArsenalInventory();
             }
         }
     }

@@ -1,9 +1,6 @@
 package org.cws.ultimatePaintOff.arsenal.ultimateWeapons;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -19,7 +16,7 @@ public class JettBlaster {
     public Map<Player, Integer> inPhase = new HashMap<>();
     public Map<Player, Location> spawnLocation = new HashMap<>();
 
-    public final double hight = 5;
+    public final double hightToReach = 6;
     public final int duration = 15;
     private final double moveDivider = 5;
 
@@ -47,16 +44,15 @@ public class JettBlaster {
                 return;
             }
             Location playerLoc = player.getLocation();
-            Location groundCheck = playerLoc.clone();
             Vector direction = player.getLocation().getDirection().normalize();
 
-            groundCheck.setY(0);
-            double groundY = groundCheck.getWorld().getHighestBlockYAt(groundCheck);
-            double distanceToGround = playerLoc.getY() - groundY;
+            double playerPosY = playerLoc.getY();
+            double distanceToLowestBlock = getLowestBlockBelowPlayer(player) - playerPosY;
 
-            if ((distanceToGround < hight) && !player.isSneaking()) {
-                double boost = 1.0 - (distanceToGround / hight);
-                player.setVelocity(new Vector(direction.getX()/moveDivider, 0.1 + (boost * 0.4), direction.getZ()/moveDivider));
+            boolean isBelow = distanceToLowestBlock < hightToReach;
+            if (isBelow && !player.isSneaking()) {
+                double boost = 0.5 + (distanceToLowestBlock / hightToReach);
+                player.setVelocity(new Vector(direction.getX() / moveDivider, 0.1 + (boost * 0.4), direction.getZ() / moveDivider));
             }
             Location particleLoc = player.getLocation().clone().subtract(0, 0.5, 0);
             player.getWorld().spawnParticle(Particle.END_ROD, particleLoc, 1, 0.25, 0.1, 0.25, 0.01);
@@ -99,5 +95,20 @@ public class JettBlaster {
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BLAZE_AMBIENT, 0.1f, 3.0f);
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 0.1f, 3.0f);
         instance.snowballManager.createSnowball(player,null,speed,0,name,destructionTime,glowing,paintLength,trailParticle,false,cooldown,radius,damage,0,false);
+    }
+
+    private double getLowestBlockBelowPlayer(Player player) {
+        Location playerLoc = player.getLocation();
+        for (int y = 1; y <= hightToReach; y++) {
+            Location checkLoc = playerLoc.clone();
+            checkLoc.setY(playerLoc.getY() - y);
+            if (checkLoc.getBlock().getType().isSolid() || checkLoc.getBlock().getType().equals(Material.WATER)) {
+                if (checkLoc.getBlock().getType().equals(Material.WATER)) {
+                    return playerLoc.getY() - (hightToReach);
+                }
+                return checkLoc.getY();
+            }
+        }
+        return playerLoc.getY() - (hightToReach);
     }
 }

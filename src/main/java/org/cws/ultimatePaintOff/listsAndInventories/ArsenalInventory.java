@@ -90,7 +90,7 @@ public class ArsenalInventory {
         if (meta != null) {
             meta.setDisplayName("§6"+ instance.jettBlaster.name);
             List<String> lore = new ArrayList<>();
-            lore.add("§7Lässt den Spieler für §3" + instance.jettBlaster.duration + "§7 Sekunden §3" + instance.jettBlaster.hight + "§7 Blöcke hoch fliegen.");
+            lore.add("§7Lässt den Spieler für §3" + instance.jettBlaster.duration + "§7 Sekunden §3" + instance.jettBlaster.hightToReach + "§7 Blöcke hoch fliegen.");
             lore.add("§7Währenddessen §egleitet§7 der Spieler in die §eBlickrichtung§7.");
             lore.add("§7Während des §eGleitens§7 werden §eBlasterkugeln§7 abgefeuert,");
             lore.add("§7die bei Aufprall §eexplodieren§7, Blöcke §eeinfärben");
