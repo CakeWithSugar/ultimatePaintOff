@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.cws</groupId>
-    <artifactId>ultimatePaintOff</artifactId>
+    <artifactId>paintOff</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>ultimatePaintOff</name>
+    <name>paintOff</name>
 
     <properties>
         <java.version>19</java.version>

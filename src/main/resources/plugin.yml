@@ -1,6 +1,6 @@
-name: ultimatePaintOff
+name: paintOff
 version: '1.0'
-main: org.cws.ultimatePaintOff.UltimatePaintOff
+main: org.cws.paintOff.PaintOff
 api-version: '1.19'
 commands:
     poarsenal:
