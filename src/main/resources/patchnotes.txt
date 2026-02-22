@@ -1,0 +1,7 @@
+Patchnotes:
+
+Ver. 1.1.0
+
+- Weapon Number now only uses the Weapon Name
+- Added Archive memory. (memorizeing: Weapon, Coins, Shoes, Pants, Jacket + Level)
+- Added Coin system

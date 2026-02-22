@@ -14,6 +14,7 @@ public class PointsManager {
     PaintOff instance = PaintOff.getInstance();
     public Map<Player, Integer> fuel = new HashMap<>();
     public Map<Player, Integer> ultPoint = new HashMap<>();
+    public Map<Player, Integer> coins = new HashMap<>();
     int[] fuelTimer;
 
     public void setup() {
@@ -60,7 +61,7 @@ public class PointsManager {
         if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) {
             return;
         }
-        int neededUltPoints = instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player));
+        int neededUltPoints = instance.arsenalCoordination.getUltPointsByWeaponName(instance.selectionManager.weapon.get(player));
         if (ultPoint.get(player) < neededUltPoints) {
             ultPoint.put(player, ultPoint.get(player) + 1);
             if (ultPoint.get(player) == neededUltPoints) {
@@ -70,12 +71,30 @@ public class PointsManager {
     }
 
     public boolean hasEnughUltPoints(Player player) {
-        int neededUltPoints = instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player));
+        int neededUltPoints = instance.arsenalCoordination.getUltPointsByWeaponName(instance.selectionManager.weapon.get(player));
         return ultPoint.get(player) == neededUltPoints;
     }
 
     public void resetPoints(Player player) {
         ultPoint.remove(player);
         fuel.remove(player);
+    }
+
+    // Coins
+
+    public void addCoins(Player player,int amount){
+        if (!coins.containsKey(player)) {
+            coins.put(player, amount);
+        } else {
+            coins.put(player,(coins.get(player)+amount));
+        }
+    }
+
+    public void removeCoins(Player player,int amount){
+        if ((coins.get(player)-amount) <= coins.get(player) && !((coins.get(player)-amount) < 0)) {
+            coins.put(player,(coins.get(player)-amount));
+        } else {
+            instance.messageManager.sendError(player,"Not enugh coins!");
+        }
     }
 }

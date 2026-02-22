@@ -13,5 +13,6 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         instance.queueManager.joinQueue(player);
+        instance.archiveManager.setup(player,false);
     }
 }

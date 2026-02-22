@@ -14,5 +14,6 @@ public class PlayerQuitListener implements Listener {
         Player player = event.getPlayer();
         instance.queueManager.leaveQueue(player,false);
         instance.gameManager.leaveGame(player,false);
+        instance.archiveManager.setup(player,true);
     }
 }

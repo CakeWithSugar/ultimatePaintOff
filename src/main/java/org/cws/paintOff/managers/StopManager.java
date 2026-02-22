@@ -60,7 +60,7 @@ public class StopManager {
             return 0;
         }
 
-        File arenaFolder = new File("PO-arenas/" + arenaName);
+        File arenaFolder = new File("plugins/PaintOff/Arena/" + arenaName);
         File blocksFile = new File(arenaFolder, "arena.dat");
 
         int dirtCount = 0;

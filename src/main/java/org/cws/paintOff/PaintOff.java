@@ -40,6 +40,7 @@ public final class PaintOff extends JavaPlugin {
     public PointsManager pointsManager;
     public DamageManager damageManager;
     public ScoreManager scoreManager;
+    public ArchiveManager archiveManager;
     public ArsenalCoordinatingManager arsenalCoordination;
 
     public ArsenalInventory arsenalInventory;
@@ -75,6 +76,7 @@ public final class PaintOff extends JavaPlugin {
         registerUlts();
         registerWeapons();
         setUp();
+        this.archiveManager = new ArchiveManager();
     }
 
     @Override

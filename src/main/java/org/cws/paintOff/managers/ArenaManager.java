@@ -92,7 +92,7 @@ public class ArenaManager {
     private void createArena(Player player,String arenaName) {
         Location playerPos = player.getLocation();
 
-        File arenaFolder = new File("PO-arenas/"+ arenaName);
+        File arenaFolder = new File("plugins/PaintOff/Arena" + arenaName);
         if (!arenaFolder.exists()) {
             if (!arenaFolder.mkdirs()) {
                 instance.messageManager.sendError(player,"Error while creating the Arena-File!");
@@ -138,7 +138,7 @@ public class ArenaManager {
     }
 
     public void editArena(String arenaName, int queue, boolean destroy) {
-        File path = new File("PO-arenas/", arenaName);
+        File path = new File("plugins/PaintOff/Arena", arenaName);
         if (!path.exists()) {
             instance.messageManager.sendError(null, "Arena-FOLDER not found!");
             return;
@@ -277,7 +277,7 @@ public class ArenaManager {
     }
 
     public void deleteArena(Player player, String arenaName) {
-        File arenaFolder = new File("PO-arenas/", arenaName);
+        File arenaFolder = new File("plugins/PaintOff/Arena", arenaName);
         if (arenaFolder.exists()) {
             try {
                 deleteDirectory(arenaFolder);
@@ -320,7 +320,7 @@ public class ArenaManager {
     }
 
     public String randomArenaName() {
-        File path = new File("PO-arenas");
+        File path = new File("plugins/PaintOff/Arena");
         if (!path.exists()) {
             if (!path.mkdirs()) {
                 instance.messageManager.sendError(null, "Could not create PO-arenas directory!");
@@ -346,7 +346,7 @@ public class ArenaManager {
     }
 
     public int countArenas() {
-        return getStrings(Objects.requireNonNull(new File("PO-arenas").listFiles())).size();
+        return getStrings(Objects.requireNonNull(new File("plugins/PaintOff/Arena").listFiles())).size();
     }
 
     private List<String> getStrings(File[] arenaFolders) {
@@ -368,7 +368,7 @@ public class ArenaManager {
 
     public void portToArena(Player player, String arenaName) {
         int game = instance.gameManager.getGameNumber(player);
-        File arenaFile = new File("PO-arenas/", arenaName + "/arena.dat");
+        File arenaFile = new File("plugins/PaintOff/Arena", arenaName + "/arena.dat");
 
         if (!arenaFile.exists()) {
             instance.messageManager.sendError(player,"Arena: " + arenaName + " not found!");
@@ -443,7 +443,7 @@ public class ArenaManager {
     private void setLobby(Player player) {
         Location playerPos = player.getLocation();
 
-        File path = new File("PO-lobby");
+        File path = new File("plugins/PaintOff/Lobby");
         if (!path.exists()) {
             if (!path.mkdirs()) {
                 instance.messageManager.sendError(player,"Error while creating the Arena-File!");
@@ -463,7 +463,7 @@ public class ArenaManager {
         }
     }
     public Location getLobbySpawn() {
-        File lobbyFolder = new File("PO-lobby");
+        File lobbyFolder = new File("plugins/PaintOff/Lobby");
         if (!lobbyFolder.exists()) {
             lobbyFolder.mkdirs();
         }

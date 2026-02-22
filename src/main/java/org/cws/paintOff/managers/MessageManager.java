@@ -93,9 +93,9 @@ public class MessageManager {
             return;
         }
         if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) {
-        player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| §cUltpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player))));
+        player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| §cUltpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponName(instance.selectionManager.weapon.get(player))));
         } else {
-            player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| Ultpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponNumber(instance.selectionManager.weapon.get(player))));
+            player.sendActionBar(Component.text("§7Fuel: " + color + fuel +" §7| Ultpoints: " + color + ultpoints + " §7/ " + color + instance.arsenalCoordination.getUltPointsByWeaponName(instance.selectionManager.weapon.get(player))));
         }
     }
 
@@ -110,6 +110,7 @@ public class MessageManager {
             enemyColor = instance.paintManager.getColorCode(instance.gameManager.colorA[game]);
         }
         if (attacker != null) {
+            instance.pointsManager.addCoins(attacker,10);
             for (Player p : instance.gameManager.game.get(game)) {
                 p.sendMessage(enemyColor + attacker.getName() + " §7--> x " + color + "§m" + player.getName());
             }
@@ -154,14 +155,14 @@ public class MessageManager {
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITH_ITEM, 1.0f, 0.5f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITH_ITEM, 1.0f, 1.0f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, 1.0f, 2f);
-//                                Points.givePoints(player, won);
+                                instance.pointsManager.addCoins(player,50);
                             }
                             for (Player player : instance.gameManager.teamB.get(game)) {
                                 player.sendTitle("§7-= " + colB + "§lLost! §7=-", "", 10, 40, 40);
                                 player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.1f, 2f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ILLUSIONER_AMBIENT, 0.5f, 0.5f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_PILLAGER_AMBIENT, 0.5f, 0.5f);
-//                                Points.givePoints(player, lost);
+                                instance.pointsManager.addCoins(player,10);
                             }
                         } else if (countB > countA) {
                             for (Player player : instance.gameManager.teamB.get(game)) {
@@ -169,14 +170,14 @@ public class MessageManager {
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITH_ITEM, 1.0f, 0.5f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITH_ITEM, 1.0f, 1.0f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_AMBIENT_WITHOUT_ITEM, 1.0f, 2f);
-//                                Points.givePoints(player, won);
+                                instance.pointsManager.addCoins(player,50);
                             }
                             for (Player player : instance.gameManager.teamA.get(game)) {
                                 player.sendTitle("§7-= " + colA + "§lLost! §7=-", "", 10, 40, 40);
                                 player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 0.1f, 2f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_ILLUSIONER_AMBIENT, 0.5f, 0.5f);
                                 player.playSound(player.getLocation(), Sound.ENTITY_PILLAGER_AMBIENT, 0.5f, 0.5f);
-//                                Points.givePoints(player, lost);
+                                instance.pointsManager.addCoins(player,10);
                             }
                         } else {
                             for (Player player : instance.gameManager.game.get(game)) {

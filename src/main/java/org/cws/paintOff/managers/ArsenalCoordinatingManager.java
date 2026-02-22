@@ -57,77 +57,77 @@ public class ArsenalCoordinatingManager {
         }
     }
 
-    public ItemStack getPrimaryItemByWeaponNumber(int weapon) {
+    public ItemStack getPrimaryItemByWeaponName(String weapon) {
         ItemStack item = null;
-        if (weapon == instance.snap.weaponNumber) {
+        if (weapon.equals(instance.snap.name)) {
             item = instance.snap.gameItem();
         }
-        if (weapon == instance.snapLight.weaponNumber) {
+        if (weapon.equals(instance.snapLight.name)) {
             item = instance.snapLight.gameItem();
         }
-        if (weapon == instance.nova.weaponNumber) {
+        if (weapon.equals(instance.nova.name)) {
             item = instance.nova.gameItem();
         }
-        if (weapon == instance.novaPuls.weaponNumber) {
+        if (weapon.equals(instance.novaPuls.name)) {
             item = instance.novaPuls.gameItem();
         }
-        if (weapon == instance.novaExtend.weaponNumber) {
+        if (weapon.equals(instance.novaExtend.name)) {
             item = instance.novaExtend.gameItem();
         }
-        if (weapon == instance.triAtler.weaponNumber) {
+        if (weapon.equals(instance.triAtler.name)) {
             item = instance.triAtler.gameItem();
         }
-        if (weapon == instance.triAtlerExtend.weaponNumber) {
+        if (weapon.equals(instance.triAtlerExtend.name)) {
             item = instance.triAtlerExtend.gameItem();
         }
-        if (weapon == instance.triAtlerPegasus.weaponNumber) {
+        if (weapon.equals(instance.triAtlerPegasus.name)) {
             item = instance.triAtlerPegasus.gameItem();
         }
-        if (weapon == instance.snapComplex.weaponNumber) {
+        if (weapon.equals(instance.snapComplex.name)) {
             item = instance.snapComplex.gameItem();
         }
-        if (weapon == instance.akonda.weaponNumber) {
+        if (weapon.equals(instance.akonda.name)) {
             item = instance.akonda.gameItem();
         }
-        if (weapon == instance.akondaExtend.weaponNumber) {
+        if (weapon.equals(instance.akondaExtend.name)) {
             item = instance.akondaExtend.gameItem();
         }
         return item;
     }
 
-    public ItemStack getUltInfoItemByWeaponNumber(int weapon) {
+    public ItemStack getUltInfoItemByWeaponNumber(String weapon) {
         ItemStack item = null;
-        if (weapon == instance.snap.weaponNumber) {
+        if (weapon.equals(instance.snap.name)) {
             item = instance.arsenalInventory.helixpulser();
         }
-        if (weapon == instance.snapLight.weaponNumber) {
+        if (weapon.equals(instance.snapLight.name)) {
             item = instance.arsenalInventory.platzRegen();
         }
-        if (weapon == instance.nova.weaponNumber) {
+        if (weapon.equals(instance.nova.name)) {
             item = instance.arsenalInventory.sonnenschutz();
         }
-        if (weapon == instance.novaPuls.weaponNumber) {
+        if (weapon.equals(instance.novaPuls.name)) {
             item = instance.arsenalInventory.fokusBooster();
         }
-        if (weapon == instance.novaExtend.weaponNumber) {
+        if (weapon.equals(instance.novaExtend.name)) {
             item = instance.arsenalInventory.helixpulser();
         }
-        if (weapon == instance.triAtler.weaponNumber) {
+        if (weapon.equals(instance.triAtler.name)) {
             item = instance.arsenalInventory.jettBlaster();
         }
-        if (weapon == instance.triAtlerExtend.weaponNumber) {
+        if (weapon.equals(instance.triAtlerExtend.name)) {
             item = instance.arsenalInventory.platzRegen();
         }
-        if (weapon == instance.triAtlerPegasus.weaponNumber) {
+        if (weapon.equals(instance.triAtlerPegasus.name)) {
             item = instance.arsenalInventory.sonnenschutz();
         }
-        if (weapon == instance.snapComplex.weaponNumber) {
+        if (weapon.equals(instance.snapComplex.name)) {
             item = instance.arsenalInventory.krawumKreisel();
         }
-        if (weapon == instance.akonda.weaponNumber) {
+        if (weapon.equals(instance.akonda.name)) {
             item = instance.arsenalInventory.fokusBooster();
         }
-        if (weapon == instance.akondaExtend.weaponNumber) {
+        if (weapon.equals(instance.akondaExtend.name)) {
             item = instance.arsenalInventory.jettBlaster();
         }
         return item;
@@ -224,72 +224,72 @@ public class ArsenalCoordinatingManager {
             return;
         }
         if (instance.itemManager.isItem(item, instance.snap.material, instance.snap.name)) {
-            instance.selectionManager.put(instance.snap.weaponNumber,instance.snap.name,player);
+            instance.selectionManager.put(instance.snap.name,player);
         }
         if (instance.itemManager.isItem(item, instance.snapLight.material, instance.snapLight.name)) {
-            instance.selectionManager.put(instance.snapLight.weaponNumber,instance.snapLight.name,player);
+            instance.selectionManager.put(instance.snapLight.name,player);
         }
         if (instance.itemManager.isItem(item, instance.nova.material, instance.nova.name)) {
-            instance.selectionManager.put(instance.nova.weaponNumber,instance.nova.name,player);
+            instance.selectionManager.put(instance.nova.name,player);
         }
         if (instance.itemManager.isItem(item, instance.novaPuls.material, instance.novaPuls.name)) {
-            instance.selectionManager.put(instance.novaPuls.weaponNumber,instance.novaPuls.name,player);
+            instance.selectionManager.put(instance.novaPuls.name,player);
         }
         if (instance.itemManager.isItem(item, instance.novaExtend.material, instance.novaExtend.name)) {
-            instance.selectionManager.put(instance.novaExtend.weaponNumber,instance.novaExtend.name,player);
+            instance.selectionManager.put(instance.novaExtend.name,player);
         }
         if (instance.itemManager.isItem(item, instance.triAtler.material, instance.triAtler.name)) {
-            instance.selectionManager.put(instance.triAtler.weaponNumber,instance.triAtler.name,player);
+            instance.selectionManager.put(instance.triAtler.name,player);
         }
         if (instance.itemManager.isItem(item, instance.triAtlerExtend.material, instance.triAtlerExtend.name)) {
-            instance.selectionManager.put(instance.triAtlerExtend.weaponNumber,instance.triAtlerExtend.name,player);
+            instance.selectionManager.put(instance.triAtlerExtend.name,player);
         }
         if (instance.itemManager.isItem(item, instance.triAtlerPegasus.material, instance.triAtlerPegasus.name)) {
-            instance.selectionManager.put(instance.triAtlerPegasus.weaponNumber,instance.triAtlerPegasus.name,player);
+            instance.selectionManager.put(instance.triAtlerPegasus.name,player);
         }
         if (instance.itemManager.isItem(item, instance.snapComplex.material, instance.snapComplex.name)) {
-            instance.selectionManager.put(instance.snapComplex.weaponNumber,instance.snapComplex.name,player);
+            instance.selectionManager.put(instance.snapComplex.name,player);
         }
         if (instance.itemManager.isItem(item, instance.akonda.material, instance.akonda.name)) {
-            instance.selectionManager.put(instance.akonda.weaponNumber,instance.akonda.name,player);
+            instance.selectionManager.put(instance.akonda.name,player);
         }
         if (instance.itemManager.isItem(item, instance.akondaExtend.material, instance.akondaExtend.name)) {
-            instance.selectionManager.put(instance.akondaExtend.weaponNumber,instance.akondaExtend.name,player);
+            instance.selectionManager.put(instance.akondaExtend.name,player);
         }
     }
 
-    public int getUltPointsByWeaponNumber(int weaponNumber) {
-        if (weaponNumber == instance.snap.weaponNumber) {
+    public int getUltPointsByWeaponName(String weaponName) {
+        if (weaponName.equals(instance.snap.name)) {
             return instance.snap.ultPoints;
         }
-        if (weaponNumber == instance.snapLight.weaponNumber) {
+        if (weaponName.equals(instance.snapLight.name)) {
             return instance.snapLight.ultPoints;
         }
-        if (weaponNumber == instance.nova.weaponNumber) {
+        if (weaponName.equals(instance.nova.name)) {
             return instance.nova.ultPoints;
         }
-        if (weaponNumber == instance.novaPuls.weaponNumber) {
+        if (weaponName.equals(instance.novaPuls.name)) {
             return instance.novaPuls.ultPoints;
         }
-        if (weaponNumber == instance.novaExtend.weaponNumber) {
+        if (weaponName.equals(instance.novaExtend.name)) {
             return instance.novaExtend.ultPoints;
         }
-        if (weaponNumber == instance.triAtler.weaponNumber) {
+        if (weaponName.equals(instance.triAtler.name)) {
             return instance.triAtler.ultPoints;
         }
-        if (weaponNumber == instance.triAtlerExtend.weaponNumber) {
+        if (weaponName.equals(instance.triAtlerExtend.name)) {
             return instance.triAtlerExtend.ultPoints;
         }
-        if (weaponNumber == instance.triAtlerPegasus.weaponNumber) {
+        if (weaponName.equals(instance.triAtlerPegasus.name)) {
             return instance.triAtlerPegasus.ultPoints;
         }
-        if (weaponNumber == instance.snapComplex.weaponNumber) {
+        if (weaponName.equals(instance.snapComplex.name)) {
             return instance.snapComplex.ultPoints;
         }
-        if (weaponNumber == instance.akonda.weaponNumber) {
+        if (weaponName.equals(instance.akonda.name)) {
             return instance.akonda.ultPoints;
         }
-        if (weaponNumber == instance.akondaExtend.weaponNumber) {
+        if (weaponName.equals(instance.akondaExtend.name)) {
             return instance.akondaExtend.ultPoints;
         }
         return 10;
@@ -319,37 +319,37 @@ public class ArsenalCoordinatingManager {
             instance.jettBlaster.end(player,true);
         }
 
-        if (instance.selectionManager.weapon.get(player) == instance.snap.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.snap.name)) {
             instance.helixpulser.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.snapLight.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.snapLight.name)) {
             instance.platzRegen.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.nova.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.nova.name)) {
             instance.sonnenschutz.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.novaPuls.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.novaPuls.name)) {
             instance.fokusBooster.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.novaExtend.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.novaExtend.name)) {
             instance.helixpulser.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.triAtler.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.triAtler.name)) {
             instance.jettBlaster.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.triAtlerExtend.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.triAtlerExtend.name)) {
             instance.platzRegen.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.triAtlerPegasus.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.triAtlerPegasus.name)) {
             instance.sonnenschutz.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.snapComplex.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.snapComplex.name)) {
             instance.krawumKreisel.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.akonda.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.akonda.name)) {
             instance.fokusBooster.cast(player);
         }
-        if (instance.selectionManager.weapon.get(player) == instance.akondaExtend.weaponNumber) {
+        if (instance.selectionManager.weapon.get(player).equals(instance.akondaExtend.name)) {
             instance.jettBlaster.cast(player);
         }
     }

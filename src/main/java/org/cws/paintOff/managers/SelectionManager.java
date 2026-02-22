@@ -9,18 +9,18 @@ import java.util.Map;
 
 public class SelectionManager {
     PaintOff instance = PaintOff.getInstance();
-    public Map<Player, Integer> weapon = new HashMap<>();
-    public Map<Player, Integer> nextWeapon = new HashMap<>();
+    public Map<Player, String> weapon = new HashMap<>();
+    public Map<Player, String> nextWeapon = new HashMap<>();
 
-    public void put(int num,String name, Player player) {
+    public void put(String name, Player player) {
         if (instance.gameManager.checkIfInGame(player)) {
             nextWeapon.remove(player);
-            nextWeapon.put(player, num);
+            nextWeapon.put(player, name);
             instance.messageManager.sendMessage(player,"You have selected §e" + name + " §7as your next weapon!");
             return;
         }
         weapon.remove(player);
-        weapon.put(player, num);
+        weapon.put(player, name);
         instance.messageManager.sendMessage(player,"You have selected §e" + name + " §7as your weapon!");
     }
 
@@ -31,10 +31,10 @@ public class SelectionManager {
             instance.pointsManager.ultPoint.put(player, 0);
             instance.messageManager.sendMessage(player, "You have changed your weapon!");
 
-            int number = instance.selectionManager.weapon.get(player);
-            ItemStack weapon = instance.arsenalCoordination.getPrimaryItemByWeaponNumber(number);
+            String name = instance.selectionManager.weapon.get(player);
+            ItemStack weapon = instance.arsenalCoordination.getPrimaryItemByWeaponName(name);
             player.getInventory().setItem(1,weapon);
-            ItemStack ult = instance.arsenalCoordination.getUltInfoItemByWeaponNumber(number);
+            ItemStack ult = instance.arsenalCoordination.getUltInfoItemByWeaponNumber(name);
             player.getInventory().setItem(8,ult);
         }
     }
